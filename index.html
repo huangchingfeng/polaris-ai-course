@@ -1,0 +1,2702 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B 業務 AI 提示詞產生器 ｜ 5/19 普拉講堂 ｜ 阿峰老師</title>
+    <meta name="description" content="50 組 B2B 業務專用 AI 指令模板，從客戶研究、提案製作、客戶溝通到策略決策，一鍵生成可用提示詞。阿峰老師（黃敬峰/AI峰哥）為 5/19 普拉講堂線上講座學員獨家設計。">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-teal: #0D9488;
+            --brand-teal-dark: #0F766E;
+            --brand-teal-light: #CCFBF1;
+            --brand-navy: #1E293B;
+            --brand-warm: #F59E0B;
+            --brand-orange: #F97316;
+            --bg-light: #F0FDFA;
+            --card-shadow: 0 4px 12px rgba(13,148,136,0.08), 0 2px 4px rgba(0,0,0,0.04);
+            --card-radius: 12px;
+            --gradient-teal: linear-gradient(135deg, #0D9488 0%, #14B8A6 100%);
+            --gradient-dark: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #1E3A5F 100%);
+            --gradient-cta: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
+        }
+        body { background-color: var(--bg-light); font-family: 'Inter', 'Noto Sans TC', sans-serif; color: var(--brand-navy); }
+        .navbar { background: #ffffff; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+        .navbar-brand { color: #1a1a1a !important; font-weight: 700; font-size: 1.05rem; }
+        .main-container { margin-top: 24px; margin-bottom: 60px; }
+        .card { border-radius: var(--card-radius); box-shadow: var(--card-shadow); border: 1px solid rgba(13,148,136,0.1); background: white; }
+        .card-header { border-bottom: 2px solid var(--brand-teal-light); background: white !important; }
+        .form-control-lg { min-height: 140px; font-family: 'Noto Sans TC', monospace; font-size: 0.95rem; border-color: rgba(13,148,136,0.2); line-height: 1.7; }
+        .form-control-lg:focus { border-color: var(--brand-teal); box-shadow: 0 0 0 3px rgba(13,148,136,0.15); }
+        .form-select:focus { border-color: var(--brand-teal); box-shadow: 0 0 0 3px rgba(13,148,136,0.15); }
+        .output-container {
+            background: linear-gradient(135deg, #F0FDFA 0%, #F0FDF4 100%);
+            border: 2px dashed rgba(13,148,136,0.3); padding: 24px;
+            border-radius: 10px; position: relative; white-space: pre-wrap;
+            word-wrap: break-word; font-family: 'Noto Sans TC', monospace;
+            min-height: 240px; font-size: 0.95rem; line-height: 1.7;
+        }
+        .copy-btn { position: absolute; top: 12px; right: 12px; }
+        .template-count { font-size: 0.78rem; color: var(--brand-navy); opacity: 0.5; margin-left: 4px; }
+        .filter-btn { border-radius: 20px; padding: 6px 16px; font-size: 0.9rem; border: 1.5px solid rgba(13,148,136,0.3); color: var(--brand-teal-dark); background: white; transition: all 0.2s; }
+        .filter-btn:hover { background: var(--brand-teal-light); border-color: var(--brand-teal); }
+        .filter-btn.active { font-weight: 700; background: var(--gradient-teal) !important; color: white !important; border-color: var(--brand-teal) !important; box-shadow: 0 2px 8px rgba(13,148,136,0.3); }
+        .hero-section {
+            background: var(--gradient-dark);
+            color: white; padding: 56px 20px 48px; border-radius: var(--card-radius);
+            text-align: center; margin-bottom: 24px; position: relative; overflow: hidden;
+        }
+        .hero-section::before {
+            content: ''; position: absolute; top: -60%; right: -30%; width: 80%; height: 160%;
+            background: radial-gradient(ellipse, rgba(13,148,136,0.15) 0%, transparent 60%);
+        }
+        .hero-section::after {
+            content: ''; position: absolute; bottom: -40%; left: -20%; width: 60%; height: 100%;
+            background: radial-gradient(ellipse, rgba(245,158,11,0.06) 0%, transparent 55%);
+        }
+        .hero-section * { position: relative; z-index: 1; }
+        .hero-section .hero-badge { display: inline-block; background: rgba(94, 234, 212, 0.18); padding: 5px 14px; border-radius: 100px; font-size: 0.78rem; font-weight: 700; letter-spacing: 2px; color: #5EEAD4; margin-bottom: 16px; border: 1px solid rgba(94, 234, 212, 0.3); }
+        .hero-section h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; line-height: 1.2; }
+        .hero-section h1 span { color: #5EEAD4; }
+        .hero-section .hero-sub { opacity: 0.8; font-size: 1rem; margin: 12px 0 16px; }
+        .hero-section .hero-motto { color: #5EEAD4; font-size: 1rem; font-weight: 600; letter-spacing: 2px; margin: 12px 0; }
+        .stat-badge {
+            display: inline-block; background: rgba(13,148,136,0.2);
+            padding: 5px 16px; border-radius: 20px; font-size: 0.85rem; margin: 4px;
+            border: 1px solid rgba(13,148,136,0.3);
+        }
+        .hero-wave { position: absolute; bottom: 0; left: 0; width: 100%; z-index: 0; }
+        .info-card { background: var(--brand-teal-light); border-left: 4px solid var(--brand-teal); padding: 16px; border-radius: 8px; margin-bottom: 16px; }
+        .info-card-blue { background: #EFF6FF; border-left: 4px solid #3B82F6; padding: 12px 16px; border-radius: 8px; margin-bottom: 12px; font-size: 0.9rem; }
+        .info-card-amber { background: #FFFBEB; border-left: 4px solid var(--brand-warm); padding: 12px 16px; border-radius: 8px; margin-bottom: 12px; font-size: 0.9rem; }
+        .btn-primary { background: var(--gradient-teal); border: none; color: white; font-weight: 700; box-shadow: 0 2px 8px rgba(13,148,136,0.3); }
+        .btn-primary:hover { background: linear-gradient(135deg, #0F766E 0%, #0D9488 100%); color: white; }
+        .tool-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+        .tool-link { background: rgba(13,148,136,0.06); padding: 5px 14px; border-radius: 16px; font-size: 0.82rem; color: var(--brand-teal-dark); text-decoration: none; border: 1px solid rgba(13,148,136,0.15); transition: all 0.2s; }
+        .tool-link:hover { background: var(--brand-teal-light); border-color: var(--brand-teal); }
+        .ethics-card { background: var(--gradient-dark); border-radius: var(--card-radius); padding: 24px; margin-bottom: 16px; color: white; box-shadow: 0 4px 16px rgba(30,41,59,0.2); }
+        .ethics-card h5 { color: #5EEAD4; font-weight: 700; margin-bottom: 16px; }
+        .ethics-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 14px; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.05); }
+        .ethics-item:hover { background: rgba(255,255,255,0.1); }
+        .ethics-icon { font-size: 1.3rem; flex-shrink: 0; }
+        .ethics-item p { margin: 0; font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+        .ethics-item strong { color: #5EEAD4; }
+
+        /* CTA 區（6/2 招生） */
+        .cta-section {
+            background: var(--gradient-dark);
+            color: white;
+            border-radius: var(--card-radius);
+            padding: 48px 30px;
+            margin: 32px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(30,41,59,0.25);
+        }
+        .cta-section::before { content: ''; position: absolute; top: -50%; right: -30%; width: 70%; height: 150%; background: radial-gradient(ellipse, rgba(249,115,22,0.18) 0%, transparent 55%); }
+        .cta-section * { position: relative; z-index: 1; }
+        .cta-section .cta-badge { display: inline-block; background: rgba(249,115,22,0.18); border: 1px solid rgba(249,115,22,0.4); padding: 6px 16px; border-radius: 100px; font-size: 0.78rem; font-weight: 700; letter-spacing: 2px; color: #FB923C; margin-bottom: 20px; text-transform: uppercase; }
+        .cta-section h3 { color: white; font-weight: 800; font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 12px; line-height: 1.3; }
+        .cta-section .cta-sub { color: #5EEAD4; font-size: 1.05rem; margin-bottom: 24px; }
+        .cta-card-inner { background: rgba(255,255,255,0.05); border: 1px solid rgba(94,234,212,0.2); border-radius: 12px; padding: 24px; margin-bottom: 24px; backdrop-filter: blur(10px); }
+        .cta-card-inner h5 { color: white; font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; }
+        .cta-card-inner .cta-meta { color: #5EEAD4; font-size: 0.85rem; margin-bottom: 16px; letter-spacing: 1px; }
+        .cta-list { list-style: none; padding: 0; margin: 0; }
+        .cta-list li { color: rgba(255,255,255,0.85); padding: 8px 0 8px 28px; position: relative; font-size: 0.95rem; }
+        .cta-list li::before { content: '✓'; position: absolute; left: 0; top: 8px; color: #5EEAD4; font-weight: 700; width: 20px; height: 20px; background: rgba(94,234,212,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; }
+        .cta-list li strong { color: white; }
+
+        .flash-sale {
+            background: linear-gradient(135deg, rgba(249,115,22,0.15) 0%, rgba(251,146,60,0.1) 100%);
+            border: 1px solid rgba(249,115,22,0.4);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+        }
+        .flash-sale .flash-title { color: #FB923C; font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; letter-spacing: 0.5px; }
+        .flash-sale .flash-meta { color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-bottom: 12px; }
+        .flash-sale ul { list-style: none; padding: 0; margin: 0; }
+        .flash-sale li { color: rgba(255,255,255,0.9); padding: 4px 0 4px 24px; position: relative; font-size: 0.92rem; }
+        .flash-sale li::before { content: '🔥'; position: absolute; left: 0; top: 4px; font-size: 0.9rem; }
+
+        .cta-button {
+            display: inline-block;
+            padding: 14px 40px;
+            background: var(--gradient-cta);
+            color: white;
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 20px rgba(249,115,22,0.4);
+            border: none;
+        }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(249,115,22,0.5); color: white; }
+
+        .instructor-section { background: var(--gradient-dark); color: white; border-radius: var(--card-radius); padding: 40px 30px; margin-top: 40px; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(30,41,59,0.2); }
+        .instructor-section::before { content: ''; position: absolute; top: -50%; right: -30%; width: 70%; height: 150%; background: radial-gradient(ellipse, rgba(13,148,136,0.08) 0%, transparent 55%); }
+        .instructor-section * { position: relative; }
+        .instructor-section h3 { color: #5EEAD4; font-weight: 800; margin-bottom: 20px; }
+        .instructor-section h6 { color: #5EEAD4; font-weight: 700; }
+        .instructor-section .title { font-size: 1.3rem; font-weight: 700; margin-bottom: 4px; }
+        .instructor-section .subtitle { color: rgba(255,255,255,0.65); font-size: 0.95rem; margin-bottom: 16px; }
+        .exp-list { list-style: none; padding: 0; }
+        .exp-list li { padding: 4px 0; font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+        .exp-list li::before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--gradient-teal); border-radius: 50%; margin-right: 10px; vertical-align: middle; }
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 20px; }
+        .contact-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); padding: 14px 16px; border-radius: 10px; text-align: center; transition: all 0.2s; }
+        .contact-item:hover { background: rgba(255,255,255,0.1); border-color: rgba(13,148,136,0.3); }
+        .contact-item a { color: #5EEAD4; text-decoration: none; font-weight: 600; }
+        .contact-item .label { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+        .footer { text-align: center; padding: 30px 0; color: var(--brand-navy); opacity: 0.5; font-size: 0.85rem; }
+        .footer a { color: var(--brand-teal); text-decoration: none; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1"><i class="bi bi-gear-fill me-2" style="color:var(--brand-teal)"></i>普拉講堂 ｜ B2B 業務 AI 實戰</span>
+        </div>
+    </nav>
+
+    <div class="container main-container">
+        <div class="hero-section">
+            <div class="hero-badge">5/19 普拉講堂 · 學員專屬</div>
+            <h1>🎯 B2B 業務專用<br><span>AI 提示詞產生器</span></h1>
+            <div class="hero-motto">「 你是機長，AI 是機組人員 」</div>
+            <div class="hero-sub">50 組 B2B 業務 AI 指令 ｜ 角色 × 情境 × 期望 ｜ 一鍵生成可貼到 ChatGPT/Gemini/Claude</div>
+            <div class="mt-3">
+                <span class="stat-badge">📋 50 個專業模板</span>
+                <span class="stat-badge">🗂️ 7 大業務分類</span>
+                <span class="stat-badge">🏆 50+ 企業實戰驗證</span>
+            </div>
+            <div class="mt-2" style="font-size:0.78rem;opacity:0.6;">
+                客戶研究 8 | 提案製作 8 | 客戶溝通 8 | 會議紀錄 6 | 業務工作流 7 | 行銷支援 7 | 策略決策 6
+            </div>
+            <svg class="hero-wave" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 40C240 10 480 55 720 35C960 15 1200 50 1440 30V60H0V40Z" fill="rgba(13,148,136,0.08)"/><path d="M0 50C300 25 600 55 900 40C1100 30 1300 50 1440 45V60H0V50Z" fill="rgba(245,158,11,0.04)"/></svg>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="info-card">
+                    <strong>💡 使用方法：</strong>選擇分類 → 挑模板 → 看 placeholder 範例 → 改成你自己的資訊 → 一鍵複製 Prompt → 貼到 ChatGPT / Gemini / Claude 立刻產出。
+                </div>
+
+                <div class="info-card-blue">
+                    <strong>🔗 課程 AI 工具：</strong>
+                    <div class="tool-links">
+                        <a href="https://chatgpt.com" target="_blank" class="tool-link">ChatGPT</a>
+                        <a href="https://gemini.google.com" target="_blank" class="tool-link">Gemini</a>
+                        <a href="https://claude.ai" target="_blank" class="tool-link">Claude AI</a>
+                        <a href="https://notebooklm.google.com" target="_blank" class="tool-link">NotebookLM</a>
+                        <a href="https://www.perplexity.ai" target="_blank" class="tool-link">Perplexity</a>
+                        <a href="https://manus.im" target="_blank" class="tool-link">Manus</a>
+                        <a href="https://gamma.app" target="_blank" class="tool-link">Gamma</a>
+                        <a href="https://aistudio.google.com" target="_blank" class="tool-link">Google AI Studio</a>
+                        <a href="https://v2.chateverywhere.app/zh/meeting-transcription" target="_blank" class="tool-link">會議記錄小幫手</a>
+                        <a href="https://claude.ai/public/artifacts/1e2a5e60-3db6-4682-99ca-c04ae859f9cb" target="_blank" class="tool-link">黃金提示詞優化師</a>
+                    </div>
+                </div>
+
+                <div class="ethics-card">
+                    <h5><i class="bi bi-shield-check me-2"></i>AI 使用倫理準則（B2B 業務必讀）</h5>
+                    <div class="ethics-item">
+                        <span class="ethics-icon">🔒</span>
+                        <p><strong>客戶機密零輸入：</strong>絕對不將客戶真實名稱、聯絡人、報價金額、客戶機密規格輸入公開 AI 工具。改用代號（A 客戶 / 德國 X 廠）。</p>
+                    </div>
+                    <div class="ethics-item">
+                        <span class="ethics-icon">✅</span>
+                        <p><strong>產出必驗證：</strong>AI 寫的英文提案、報價單、技術規格，最後一定要人工核實確認，不能直接寄出。</p>
+                    </div>
+                    <div class="ethics-item">
+                        <span class="ethics-icon">🤝</span>
+                        <p><strong>人機分工：</strong>AI 做第一版草稿（省 80% 時間），最後 20% 的人情味、判斷、決策，永遠在人。</p>
+                    </div>
+                    <div class="ethics-item">
+                        <span class="ethics-icon">⚠️</span>
+                        <p><strong>風險意識：</strong>了解 AI 的局限性（會幻想數據、不懂你的產業細節），避免過度依賴造成業務失誤。</p>
+                    </div>
+                </div>
+
+                <!-- 6/2 + 先鋒席 CTA -->
+                <div class="cta-section">
+                    <div class="cta-badge">🔥 講座學員專屬</div>
+                    <h3>50 組 Prompt 只是地圖，<br>6/2 我帶你手把手走過一遍</h3>
+                    <div class="cta-sub">B2B 企業的 AI 實戰深度班 ｜ 6 小時手把手 ｜ 業務 × 行銷 × 策略</div>
+
+                    <div class="cta-card-inner">
+                        <h5>6/2 B2B 企業的 AI 實戰深度班</h5>
+                        <div class="cta-meta">2026/06/02（二）10:00 - 17:00 ｜ 普拉瑞斯實體教室 ｜ 限額 25-30 人</div>
+                        <ul class="cta-list">
+                            <li><strong>5 個 1 小時模組</strong>：AI 思維 × Prompt 黃金三角 × 業務戰場 × 行銷戰場 × 策略戰場</li>
+                            <li><strong>5 種職務分軌</strong>：業務、行銷、管理、特助、二代各有專屬選題</li>
+                            <li><strong>當天帶走</strong>：完整客戶提案簡報 + 行銷內容包 + NotebookLM 知識庫</li>
+                            <li><strong>主流 AI 工具實戰</strong>：ChatGPT、Claude、Perplexity、NotebookLM、Gamma 等</li>
+                        </ul>
+                    </div>
+
+                    <div class="flash-sale">
+                        <div class="flash-title">AI 實踐先鋒席 · 48hr 閃購</div>
+                        <div class="flash-meta">5/19 12:00 ─ 5/21 12:00 · 阿峰老師現場親自宣佈</div>
+                        <ul>
+                            <li><strong>「只有聽這場的人」才能搶</strong> — 尊榮限定</li>
+                            <li>48 小時一過，恢復原價，不再開放</li>
+                            <li>報名請洽普拉瑞斯</li>
+                        </ul>
+                    </div>
+
+                    <div style="text-align:center;">
+                        <a href="#" class="cta-button">立刻鎖定 6/2 席次 <i class="bi bi-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header bg-white p-3">
+                        <h5 class="mb-3"><i class="bi bi-funnel me-2"></i>1. 選擇分類與模板</h5>
+                        <div id="category-filters" class="mb-3 d-flex flex-wrap gap-2"></div>
+                        <select id="templateSelector" class="form-select form-select-lg"></select>
+                    </div>
+                    <div class="card-body p-4" id="prompt-form-container"></div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header bg-white p-3">
+                        <h5 class="mb-0"><i class="bi bi-clipboard-check me-2"></i>2. 複製生成結果</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div id="output" class="output-container">請在上方選擇模板並填寫內容...</div>
+                        <button id="copyBtn" class="btn btn-primary copy-btn">
+                            <i class="bi bi-clipboard me-1"></i>複製
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 講師介紹 -->
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-10">
+                <div class="instructor-section">
+                    <h3><i class="bi bi-person-badge me-2"></i>講師介紹</h3>
+                    <div class="title">黃敬峰（阿峰老師／AI峰哥）</div>
+                    <div class="subtitle">企業 AI 實戰培訓專家 ｜ 讓每個人都會用 AI 解決工作問題</div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <h6>現職</h6>
+                            <ul class="exp-list">
+                                <li>交點文化股份有限公司 負責人</li>
+                                <li>台灣・馬來西亞・香港 AI 講師</li>
+                                <li>Google Gemini 認證講師</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <h6>教學實績</h6>
+                            <ul class="exp-list">
+                                <li>超過 1,000 小時 AI 工作坊經驗</li>
+                                <li>累計服務超過 300 間企業</li>
+                                <li>教學理念：會用、懂用、好用、每天用</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <h6>公部門授課經歷</h6>
+                            <ul class="exp-list">
+                                <li>行政院數位發展部</li>
+                                <li>行政院勞動力發展署</li>
+                                <li>經濟部能源署</li>
+                                <li>高雄市政府／社會局／文化局</li>
+                                <li>國立美術館、中華民國海洋委員會</li>
+                                <li>新竹市衛生局、嘉義縣政府</li>
+                                <li>財團法人中衛發展中心</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <h6>企業授課經歷</h6>
+                            <ul class="exp-list">
+                                <li>台灣理光、華碩電腦</li>
+                                <li>南山人壽、新加坡商蝦皮</li>
+                                <li>歐德傢俱、裕隆日產</li>
+                                <li>順益集團、南都汽車集團（Toyota 經銷商）</li>
+                                <li>日商 TOTO、雅丰連鎖醫美診所</li>
+                                <li>Happy Hair 連鎖髮廊</li>
+                                <li>全家便利商店</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr style="border-color:rgba(255,255,255,0.15);margin:24px 0;">
+                    <h6 style="margin-bottom:12px;">聯絡資訊 & 社群</h6>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <div class="label">官方網站</div>
+                            <a href="https://www.autolab.cloud" target="_blank"><i class="bi bi-globe me-1"></i>www.autolab.cloud</a>
+                        </div>
+                        <div class="contact-item">
+                            <div class="label">部落格</div>
+                            <a href="https://blog.autolab.cloud" target="_blank"><i class="bi bi-journal-text me-1"></i>blog.autolab.cloud</a>
+                        </div>
+                        <div class="contact-item">
+                            <div class="label">Email</div>
+                            <a href="mailto:ai@autolab.cloud"><i class="bi bi-envelope me-1"></i>ai@autolab.cloud</a>
+                        </div>
+                        <div class="contact-item">
+                            <div class="label">手機 / LINE</div>
+                            <a href="tel:0976715102"><i class="bi bi-line me-1"></i>0976-715-102</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer mt-4">
+            <p>普拉瑞斯 Polaris ｜ 普拉講堂線上直播 ｜ 2026.05.19</p>
+            <p>講師：<a href="https://www.autolab.cloud" target="_blank">黃敬峰（阿峰老師）</a>｜<a href="mailto:ai@autolab.cloud">ai@autolab.cloud</a></p>
+        </div>
+    </div>
+
+<script type="text/template-data">
+{
+    "name": "陌生客戶公司 5 分鐘深度背景分析",
+    "category": "客戶研究",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 15 年資歷的 B2B 商業情報分析師，專長是工業製造業與外銷機械設備市場的客戶研究。你曾服務超過 80 家台灣中小型製造商，擅長從公開資料（網站、LinkedIn、新聞、招募職缺、商業司登記）快速拼湊出客戶的真實樣貌，並且能夠找出對業務最有價值的切入點。你熟悉塑橡膠機械、精密模具、工業氣動、食品機械等外銷產業的採購邏輯。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是一家台灣塑橡膠機械製造商（主力產品：PE 中空成型機，5L 容量，產能 800pcs/hr，已取得 CE 認證）的業務經理。今天早上收到一封來自越南胡志明市的詢問信，對方公司叫做 Minh Phuong Plastics，網址是 minhphuong.vn。我下週二要和對方視訊，但對這家公司完全陌生，不知道他們的規模、主要市場是誰、採購決策由誰決定。以前做客戶調查要花 3-4 小時手動 Google、查 LinkedIn、找新聞，常常拼湊不完整。這次想在 30 分鐘內拿到一份有結構、可以直接用在視訊準備的客戶背景報告。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我產出一份「視訊拜訪前準備報告」，必須包含：①公司主要業務、規模推估（員工數、年營業額級距）、創立年份；②近 6 個月可觀察到的新動態（擴廠、新產品線、得獎認證、招募信號）；③主要市場與下游客戶群（出口哪些國家、服務什麼產業）；④我方 PE 中空成型機對他們可能的具體應用場景（至少 2 個）；⑤視訊開場可以用的 3 個破冰話題（要有依據，不要空泛）。輸出格式：分五點條列，每點 2-4 句，總長度控制在 400 字以內。語氣：客觀、有根據，不確定的資訊要標注「待確認」。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "海外客戶採購決策鏈拆解（找到真正的 KP）",
+    "category": "客戶研究",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 18 年資歷的國際 B2B 銷售策略顧問，深耕工業設備與機械外銷領域，曾在德國、印度、東南亞、中東等市場操作過超過 200 個大型採購案。你特別擅長分析不同國家、不同規模企業的採購決策文化差異，能夠幫助業務人員識別真正的關鍵決策者（KP），並設計影響多層決策者的策略。你熟悉塑橡膠機械、橡膠製品、精密模具等 B2B 工業品的採購流程。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我服務於一家台灣橡膠機械製造商（主力產品：雙螺桿押出機，用於 EPDM/TPE 複合橡膠加工），主要出口印度和東歐市場。我有一個印度客戶 Kumar Rubber Industries，員工約 300 人，坐落於浦那（Pune），生產汽車密封條供給 Tata 和 Mahindra。我目前的聯絡窗口是採購主管 Rajesh，但報價出去已經 3 週，每次問他，他說「正在內部評估」。我懷疑他沒有最終決定權，但不知道上面還有誰在參與決策，更不知道如何在不得罪 Rajesh 的前提下接觸到更高層。以前遇到這種情況，我通常等了 6-8 週才拿到結果，有時候根本沒有回音。我想在這 2 週內搞清楚決策鏈，推進到下一步。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我分析這類印度汽車零件橡膠廠的採購決策鏈，產出包含：①決策鏈中通常有哪些角色（採購/工程師/財務/老闆），各角色的核心關注點是什麼；②我目前的窗口 Rajesh 在決策鏈中的位置與實際影響力評估；③ 3 種可以讓 Rajesh 主動協助引薦上層的話術（不讓他感覺被繞過）；④如果 Rajesh 持續擋路，我可以採取的 2 種替代接觸方式（如 LinkedIn/展會/工廠參觀）；⑤特別考慮印度商業文化中「關係」和「面子」對決策的影響。輸出：條列式，每點附上一個可以立即執行的具體動作，總長度 450 字以內。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "海外客戶財務健康快速判讀（出貨前風控）",
+    "category": "客戶研究",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 12 年資歷的國際貿易信用風險分析師，曾服務過台灣 50 家以上的中小型外銷製造商。你熟悉歐洲、中東、東南亞、南美洲等市場的企業信用查核方式，擅長從免費公開資料（商業登記、招募動態、新聞、LinkedIn 異動）快速判讀客戶財務健康度，並給出帳期建議和收款保障方案。你了解 L/C、D/P、OA 等付款條件的風險差異，也熟悉信用保險和 Dun & Bradstreet 等評分邏輯。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家精密塑膠模具製造商的業務副總，公司年營業額約 8,000 萬台幣，主要出口德國和波蘭的汽車零件 Tier 2 廠商。有一家波蘭新客戶 AutoComp Polska（位於弗羅茨瓦夫，成立 2019 年，員工約 120 人），想要一次訂購 5 套模具，總金額約 40 萬歐元，要求帳期 OA 90 天。我只找到以下公開資訊：他們的官網看起來很新、LinkedIn 上的員工顯示有些人三個月前才加入、有一則 2024 年 3 月的新聞說他們剛拿到波蘭政府補助，但也有一則說他們前執行長在 1 月離職。我們公司以前遇過壞帳，損失了 120 萬台幣，所以老闆要我在接單前做好風控評估。我想在 2 天內給老闆一份清楚的建議。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請根據我提供的公開資訊，幫我產出一份客戶財務風控評估，包含：①財務健康燈號評估（紅/黃/綠）及評分依據；②從現有資訊判讀出的 3 個主要風險訊號，每個訊號說明為什麼危險；③建議的付款條件（如 L/C、訂金比例、OA 上限），並說明每個條件的保護邏輯；④我可以進一步查驗的 3 個免費或低成本公開資源（針對波蘭市場）；⑤如果老闆想要接這張單但降低風險，可以採取的 2 個替代方案（如分批交貨、信用保險）。輸出：條列式 + 最後一段總結建議（120 字以內），讓我可以直接給老闆看。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "競品比較分析（外銷市場版，應對客戶比價）",
+    "category": "客戶研究",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 14 年資歷的 B2B 工業產品市場競爭分析師，專精於台灣、中國、德國、日本機械設備在東南亞及東歐市場的競品對比。你曾協助超過 60 家台灣外銷製造商建立競品應對策略，擅長從技術規格、交期、售後、品牌定位等多個維度做出清晰的競品比較，並設計出有說服力的差異化話術，特別熟悉塑橡膠機械、氣動工具、工業感測器等領域的競爭格局。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我任職於一家台灣工業氣動釘槍製造商（主力產品：氣動直釘槍 F50，最大連釘速度 5 發/秒，適用木工建材）。我們的主要外銷市場是東南亞（越南、泰國、印尼）和中東（沙烏地阿拉伯、阿聯酋）。我最近在跟一個泰國建材商 BKK Hardware 談合作，對方說：「你的報價比中國牌子貴 18%，比日本 Hitachi 便宜，你說你們哪裡好？」我一時語塞，不知道怎麼定位自己。我們的競品主要有：①中國品牌（批量大、價格低、品質參差）；②日本 Hitachi（高品質、高價、工廠服務慢）；③韓國品牌（中高階、交期快）。我以前做競品分析要翻 3-4 天的資料，這次想在 1 天內拿到一份可以用在拜訪提案的對比分析。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我產出一份針對東南亞市場的競品比較分析，必須包含：①我方 vs 中國品牌 vs 日本 Hitachi vs 韓國品牌，各自的核心市場定位和主打賣點；②四個品牌的價格帶比較（低/中高/高），以及目標買家的心理預算對應；③從泰國建材商的角度，各品牌在東南亞的口碑評估（可靠性、售後、交期）；④我方產品在這個對比中最應強調的 3 個相對優勢，每個優勢附上 1 句可以直接說給客戶聽的話術；⑤我方最容易被攻擊的 2 個弱點，以及建議的應對回應。輸出格式：每個維度各自分段，最後加上「提案重點提醒」一段，總長度 500 字以內。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "產業趨勢摘要（給外銷提案簡報用的開場數據）",
+    "category": "客戶研究",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 10 年資歷的產業研究分析師，專注於亞洲製造業與工業機械設備市場，曾為超過 40 家外銷型台灣企業產出市場報告。你擅長把複雜的市場數據轉化成業務人員可以直接用在客戶提案的語言，特別熟悉塑橡膠加工、食品機械、精密模具、工業自動化等領域在東南亞和南亞的市場動態，並且能夠引用可信的數據來源（如 Mordor Intelligence、Statista、CAGR 預測）增加說服力。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家食品機械製造商的業務主管（主力產品：連續式食品真空包裝機，適用熟食、豆腐、肉品加工），主要外銷市場是印度和越南。下個月 6 月初，我要參加越南胡志明市的 VIETFOOD 食品展，展前要準備一份 10-15 頁的提案簡報，要用市場數據說服越南食品廠商「現在是引進自動化包裝設備的最佳時機」。但我現在的問題是：我找不到夠有說服力的越南食品加工市場數據，就算找到也是英文的 PDF，要花 3-4 天整理，而且不確定哪個數字可信。我希望直接有一份可以抄進 PowerPoint 的趨勢摘要，要有震撼數字和清楚的數據來源。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我產出一份「越南食品加工機械市場趨勢摘要」，用於 B2B 展前提案簡報開場。內容必須包含：①市場規模與近 3 年成長率（引用具體數據來源）；②三大主要趨勢（技術/食安法規/供應鏈在地化），每個趨勢對應一個對我方產品有利的機會點；③越南食品廠現在面臨的主要挑戰（人力成本、食安稽查壓力、電商冷鏈需求），以及我方設備如何對應；④未來 3 年越南市場預測（設備採購量或市場規模）；⑤ 1 個可以放在簡報封面或開場第一頁的震撼數字（要有出處）。每點 2-3 句，搭配一個可以直接放進 PPT 的標題句（建議用粗體標出），語言繁體中文，總長度 400 字以內。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "採購信號偵測（10 個關鍵訊號 + 最佳跟進時機）",
+    "category": "客戶研究",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 13 年資歷的 B2B 業務策略顧問，專精於工業設備與機械領域的採購信號識別和業務時機把握。你服務過超過 70 家台灣外銷製造商，幫助業務團隊建立系統化的客戶信號追蹤機制，能夠從 LinkedIn 動態、新聞稿、招募職缺、展覽報名等多元公開管道中識別出「客戶正在有採購意願」的關鍵訊號，並設計出對應的跟進話術和最佳聯絡時機。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是一家台灣橡膠押出機械製造商的業務經理，主力產品是 EPDM 橡膠押出機（主要用於汽車密封條和建材防水條生產），主要外銷東南亞、印度和中東。目前手上有 50 家潛在客戶清單，都是我在展會和 LinkedIn 上蒐集來的，但我不知道哪些客戶「現在有需求」，只能靠感覺輪流發開發信，效果很差，回覆率大約只有 3-5%。我每週花 2-3 小時盲目跟進，沒有系統。我希望能建立一套「每週 30 分鐘就能掃一遍的信號偵測清單」，讓我只追聯絡對的客戶，在對的時間點出現，而不是對所有人廣播。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我列出 10 個可以在公開管道（LinkedIn、Facebook、新聞稿、104/Indeed 招募職缺、展覽報名、政府採購公告）觀察到的「客戶有橡膠機械採購意願」的具體訊號。每個訊號必須包含：①這個訊號的具體樣子（例：出現什麼關鍵字、貼了什麼類型的文章）；②這個訊號代表什麼採購需求或購買意圖；③建議的跟進時間窗口（24 小時內 / 一週內 / 一個月內）；④第一句開場白建議（10-20 字，自然不像廣告）。格式：條列 10 點，每點 4 項都要完整填寫。最後加一段「每週 30 分鐘掃描 SOP 建議」（100 字）。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "LinkedIn 客戶動態追蹤與切入策略",
+    "category": "客戶研究",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 11 年資歷的 B2B 業務開發顧問，專精於社群情報解讀和 LinkedIn 銷售策略，曾協助超過 55 家台灣工業品外銷業務人員建立系統化的 LinkedIn 開發流程。你擅長從潛在客戶的 LinkedIn 貼文、互動模式、個人資料異動中解讀出對方目前最在意的工作課題，並設計出自然、不生硬、不像在推銷的切入方式，讓第一次聯絡的陌生開發信有更高的回覆率。你特別熟悉製造業採購、工程主管、外銷採購等族群的 LinkedIn 使用習慣。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家精密塑膠射出成型機製造商的業務開發專員（主力產品：伺服驅動射出成型機 280T，能耗比傳統機種低 40%），主要目標客戶是東歐汽車零件廠的採購或工程主管。我在 LinkedIn 上找到一個目標客戶：波蘭某汽車零件廠的製程工程主管 Marek Kowalski，過去三個月他的 LinkedIn 動態如下：一篇分享「EV 零件模具設計挑戰」的文章並附上自己的評論、一篇按讚了「供應鏈去中國化」的貼文、一篇新分享說他們公司剛通過 IATF 16949 認證。以前我直接發 LinkedIn 訊息說「我們公司有射出成型機，想介紹」，對方直接無視。我想改變做法，用更自然的方式讓他願意回覆。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請根據我提供的 LinkedIn 動態，幫我完成以下分析與行動建議：①這位工程主管目前最關注的 2-3 個工作議題（從貼文推論，要有具體根據）；②他的溝通風格和個性特徵推測（謹慎型 / 開放型 / 技術導向），以及對應的溝通策略；③我方伺服驅動射出成型機與他的關注點之間有哪些自然連結（至少 2 個具體連結點）；④一封可以發送的 LinkedIn 連結請求訊息（150 字以內，引用他的貼文，自然切入，不要有「想介紹我們的產品」）；⑤如果對方接受連結後，後續 3 步的暖身策略（不要一接就推銷）。輸出：分五點，每點完整，最後 LinkedIn 訊息用引號框起來方便複製。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "展前客戶拜訪完整準備包（破冰話題 + 提問清單）",
+    "category": "客戶研究",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 16 年資歷的 B2B 工業品業務培訓師，擅長幫助業務人員在拜訪前做好充分準備，讓每一次客戶見面都有目的、有成果。你曾培訓超過 1,000 位台灣外銷業務人員，熟悉展覽現場、工廠拜訪、視訊會議等不同情境的客戶溝通技巧。你特別擅長設計「問對問題」的技巧——讓業務人員在有限的拜訪時間內，用開放式問題快速找到客戶的痛點、預算、決策時程和競品比較。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家橡膠 O-Ring 精密模具製造商的資深業務（主力產品：EPDM 和 NBR 橡膠 O-Ring 多穴模具，最小公差 ±0.03mm，適用汽車、氣動、液壓系統）。下週三我要在台北參加 TAIPEI PLAS 橡膠展，屆時有 4 個客戶預約來攤位洽談，其中一個是印度客戶 Ravi Kumar，他的名片上是「Purchase Manager, Automotive Rubber Division」，這是我們第一次見面，只有 20-30 分鐘。以前遇到第一次見面的客戶，我常常開場很尬、不知道問什麼，等到聊開了又沒時間了，最後只有互換名片和型錄，沒有推進到下一步。我想為這次 20 分鐘的見面準備一個清楚的架構，讓對話有效率。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我產出一份「展覽現場 20 分鐘客戶拜訪準備包」，對象是印度汽車橡膠採購主管，包含：①3 個可以在開場 3 分鐘內用的破冰話題（要和他的產業或展覽相關，不要問天氣）；②10 個分層提問清單，分為「需求探索（4 個）」、「預算與時程（3 個）」、「決策與競品（3 個）」三類，每個問題後面標注「這個問題可以挖出什麼資訊」；③ 1 個可以在拜訪結束前說的收尾句，引導對方同意下一步行動（視訊 or 寄規格）；④ 3 件拜訪前一天晚上要確認好的準備事項（帶什麼、查什麼、確認什麼）。輸出格式：分四區塊，條列式，可直接列印帶去展覽使用。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "一封詢問信秒變完整客製提案（30 分鐘內交出）",
+    "category": "提案製作",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 15 年資歷的資深 B2B 業務提案專家，專注工業機械與外銷製造業領域，曾幫助超過 90 家台灣中小製造商將詢問信轉化為高成交率的客製提案。你擅長快速解析客戶詢問信的隱性需求，並在 30 分鐘內設計出兼顧「專業感」和「個人化溫度」的回覆提案，讓客戶感受到這份提案是真正針對他寫的，而不是套用模板廣播。你熟悉塑橡膠機械、模具、氣動工具、食品機械等產業的報價邏輯與提案結構。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家 PE 中空成型機製造商的業務主任（主力產品：PE 中空成型機 5L-30L，產能 600-1,200pcs/hr，已取得 CE、RoHS 認證，售後備料庫存台灣、越南各設一處）。今天收到一封來自埃及開羅的詢問信，對方是 Cairo Packaging Solutions，採購主管叫做 Ahmed，詢問重點是：「需要 5L 容量 PE 成型機 2 台，要求交期不超過 90 天，請問 FOB 高雄報價和技術規格？另外你們有在中東有服務點嗎？」以前遇到這種詢問信，我要花 2-3 個小時拼湊一份提案：先查規格、再寫英文、再想怎麼說差異化。但客戶可能同時詢問了 5-6 家，誰先回、回得好，誰就贏得試做機會。我這次想在 30 分鐘內交出一份讓 Ahmed 覺得「你們有認真讀我的信」的提案。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我產出一封提案回覆 Email（中英文各一版），結構如下：①開場（2-3 句）：呼應 Ahmed 詢問的具體重點（CE 認證 + 90 天交期 + 中東服務），展現我們有仔細讀這封信；②主體方案：針對 5L PE 成型機 2 台，條列建議規格和對應說明，包含產能、能耗、認證；③差異化 2-3 點：我們和其他供應商最大的不同（交期、備料、中東服務點），每點一句話說完；④報價框架：FOB 高雄 + 付款條件建議 + 交期承諾（用佔位符格式，讓我填入實際數字）；⑤結尾 CTA：邀請對方安排 15 分鐘視訊確認規格細節。英文版 300 字以內，語氣專業不卑不亢；中文版 200 字以內，供我自己確認邏輯用。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "國際 B2B 報價單產出（含 Incoterms 條件說明）",
+    "category": "提案製作",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 14 年資歷的外銷業務文件撰寫專家，深耕工業設備和精密零組件的國際報價文件，曾為超過 70 家台灣外銷商處理過 FOB、CIF、EXW、DDP 等各種 Incoterms 條件下的報價單和附帶說明文字。你擅長把枯燥的報價數字轉化成讓客戶理解「為什麼這個價格值得」的說明文字，並且知道如何在報價單中埋入提升成交率的要素，如交期承諾、品質保證、帳期邏輯等。你特別熟悉歐洲、中東、東南亞客戶對報價文件的格式偏好。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家雙螺桿橡膠押出機製造商的業務副理（主力產品：雙螺桿押出機 D80，適用 EPDM/SBR/TPE 混練押出，扭力 8kNm，轉速 0-600RPM），主要外銷德國、波蘭的橡膠加工廠。我的德國客戶 MüllersGummi GmbH 要求我在本週五前提供正式報價，需求如下：D80 押出機 3 台，FOB 基隆，付款條件 30% 訂金 + 70% L/C，交期要求 120 天內。我的報價是每台 USD 68,500，含標準配件，不含安裝。以前我的報價單只有一張 Excel 表格，客戶有時候看不懂某些費用包不包含，或是覺得我的報價單不夠「正式」，比起德國競品的文件顯得業餘。這次我想讓這份報價單既清楚又有說服力，讓對方感覺我們是值得信賴的長期供應商。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我撰寫報價單的完整附帶說明文字（英文版），包含：①報價組成說明：這個單價包含什麼（配件清單、品質標準）、不包含什麼（運費、安裝、稅）；② Incoterms 條件說明：FOB 基隆的責任轉移點和風險分配白話說明（讓採購主管看懂，不是法律文字）；③付款條件說明：30% 訂金 + 70% L/C 的邏輯和對買方的保障；④交期承諾說明：120 天交期的依據（如何保證）；⑤促成行動的一句話（有效期限提醒，不要有壓迫感）。英文版，語氣：專業、有自信、不卑不亢。總長度 350 字以內。另附中文版供我確認，200 字以內。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "技術規格白話翻譯（讓非工程背景的採購決策者看懂）",
+    "category": "提案製作",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 12 年資歷的工業設備業務培訓師，同時具備機械工程背景，擅長把工程師語言轉換成採購決策者（老闆、採購主管、財務長）能聽懂的商業語言。你曾協助超過 60 家台灣機械製造商重新設計產品說明材料，讓非技術背景的客戶能夠快速理解產品的商業價值，而不是被一堆數字和英文縮寫嚇跑。你熟悉射出成型機、押出機、中空成型機、精密模具等工業設備的技術規格和對應的生產效益邏輯。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家伺服驅動射出成型機製造商的業務工程師（主力產品：伺服驅動射出成型機 280T，規格如下：鎖模力 2,800kN、射出量 458g/s、射出壓力 1,965 bar、乾週期 1.8 秒、能耗比傳統液壓機省 40-60%、重複精度 ±0.05%）。我要準備一份提案給一家越南汽車零件廠的老闆和採購主管（不是工程師），他們的問題是：舊的液壓機穩定性差、良率只有 92%、電費佔成本 18%。我的技術型錄滿滿都是工程師看的數字，但上次拜訪時，老闆聽到一半就說「你的規格很好，但我聽不懂對我有什麼好處」，然後把提案擱置了。這次我要重新設計說明方式，用老闆聽得懂的語言說話。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我把以下技術規格翻譯成「對越南汽車零件廠老闆的具體好處」，格式為一一對應的「規格 → 白話好處」說明：①鎖模力 2,800kN → 對老闆意味著什麼；②能耗省 40-60% → 換算成年省多少電費（假設每天 16 小時、電費 0.08 USD/kWh）；③重複精度 ±0.05% → 對良率的影響和省下的廢料成本；④乾週期 1.8 秒 → 對每日產能的提升；⑤上述四點合計，幫我估算 3 年的 ROI（給假設數字框架）；最後幫我寫一段 2 句話的「老闆版產品總結」，讓他在 30 秒內理解為什麼要換這台機器。輸出：規格白話對應表 + ROI 估算框架 + 老闆版總結，繁體中文，總長度 400 字以內。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "提案案例引用（Story Format，讓數字有感情）",
+    "category": "提案製作",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 10 年資歷的 B2B 業務故事化表達教練，同時也是工業設備銷售背景出身，曾協助超過 50 家台灣製造商把真實的客戶成功案例改寫成在提案中能打動人心的故事格式。你深知 B2B 業務的成交往往不只靠數字，還靠「讓客戶看到自己在案例中」的共鳴感。你擅長用「背景→挑戰→轉折→成果→Quote」五段式結構把一個案例說得有起伏、有溫度，讓對方覺得「這就是在說我啊」。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家 PE 中空成型機製造商的業務主任，主力產品用於 5L-30L 塑膠容器的成型生產。我有一個真實案例想放進下週的提案：客戶是越南胡志明市的一家塑膠包裝廠（約 150 名員工，供貨給日系清潔劑品牌），他們原本的舊機器是 10 年前買的中國品牌，良率只有 88%，換模時間要 3 小時，每週至少有一次非計畫停機。我們在 2024 年 8 月協助他們換了 3 台我們的新機器，三個月後他們的良率提升到 96%、換模時間縮短到 45 分鐘、停機次數減少到一個月不到一次。我這次提案的目標客戶是印尼泗水的一家同類型包裝廠，規模相近，老闆最在意良率和停機問題。案例我有，但不知道怎麼說才能讓印尼老闆有感。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我把上述案例改寫成一個可以放進提案簡報或 Email 的「成功故事」，使用五段式結構：①背景（100 字以內）：引起印尼老闆共鳴的情境描述，要讓他覺得「這說的就是我」；②挑戰（80 字）：讓讀者感受到良率 88% 和停機問題的痛點代價（不只是數字，要有生產現場的感覺）；③轉折（80 字）：我們如何介入，說明我們做了什麼（不要只說「換了新機器」）；④成果（80 字）：具體數字（良率/換模時間/停機次數）+ 一句情感收尾；⑤ 1 句可以直接引用的客戶 Quote（假設對方說的話，口語真實感）。語氣：真實、有溫度，避免廣告感。總長度 300-350 字。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "英文提案信（給歐美客戶，專業且有文化感）",
+    "category": "提案製作",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 16 年資歷的資深 B2B 外銷業務提案撰寫師，專精於工業機械設備的英文提案文件。你曾為超過 100 家台灣製造商撰寫過給德國、英國、美國、波蘭、捷克等市場客戶的英文提案信，深知歐美客戶重視技術細節、數據佐證、直接表達和不浪費對方時間的溝通風格。你的英文提案信以「簡潔有力、技術到位、下一步清楚」著稱，被多位歐洲採購主管評為「比許多歐洲本地供應商的信件更清楚」。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家精密橡膠 O-Ring 模具製造商的業務副理（主力產品：多穴 EPDM O-Ring 模具，最小公差 ±0.03mm，128 穴標準模，交期 30-45 天，已取得 ISO 9001 認證，模具鋼材使用瑞典 ASSAB S136，壽命保證 100 萬次以上）。我在德國 Hannover Messe 展認識了一家德國密封件製造商 Dichtungstechnik Schmidt GmbH 的採購工程師 Stefan Müller。他當時說對我們的交期很感興趣（他現在的供應商要 90 天），約好展後一週內寄提案。現在距離展會結束已 5 天，我要在明天寄出提案信。我的英文沒有問題，但我不確定「德國風格的提案信」應該怎麼寫，怕太熱情反而讓德國人覺得不夠專業，或是太簡短又覺得我沒有誠意。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請用英文幫我撰寫一封完整的提案信給 Stefan Müller，結構如下：① Subject line：清楚、具體、10 字以內（不要用 partnership/cooperation 這類空話）；② Opening（2-3 句）：回應展會見面的記憶點（強調他說的交期 90 天問題），展現我們有認真記筆記；③ Solution section（3 點條列）：把我們的模具規格對應到他關心的採購痛點（交期/精度/耐用性），每點一句話說重點；④ Social proof（1 段）：引用一個類似德國客戶的案例（可以用代號），說明交期和品質結果；⑤ CTA（1-2 句）：建議一個具體的視訊時間選項。語氣風格：對德國工程師合適的——技術導向、直接、沒有多餘的客套話。總長度 280-320 字，不要出現「I hope this email finds you well」。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "10-15 頁提案簡報完整結構規劃",
+    "category": "提案製作",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 13 年資歷的 B2B 業務提案設計師，專長是幫助台灣工業品外銷業務人員設計「能讓客戶從頭看到尾、然後主動回覆」的提案簡報結構。你曾為超過 65 家製造商設計提案簡報框架，操作過塑橡膠機械、精密模具、工業零組件、食品機械等品類，熟悉不同國家客戶（德國、印度、越南、中東）的簡報接受習慣差異。你的簡報結構以「從客戶痛點切入、用數據說話、結尾清楚推動下一步」的邏輯著稱。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家工業氣動工具製造商的業務主管（主力產品：氣動砂輪機、氣動衝擊扳手、氣動直磨機，主要外銷中東（沙烏地阿拉伯、阿聯酋）和東歐（波蘭、捷克）的工具中盤商和工業用品連鎖店）。我即將和沙烏地一家大型工業用品連鎖商 Al Saud Industrial Tools 進行正式提案視訊，對方有 5 家分店，年採購氣動工具約 200 萬美元，目前主要向台灣另一家牌子採購，但對方說因為交期不穩定而考慮換供應商。這是我們進入沙烏地市場的重要機會。我有產品型錄、過去的客戶清單和價格表，但我不知道如何把這些材料整合成一份讓中東大買家「看了有感」的 10-15 頁提案簡報架構，以前我的提案都是用 Email 寫 Word，沒有系統性的簡報格式。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我設計一份針對沙烏地工業連鎖商的 12 頁提案簡報完整結構，每頁提供：①頁面標題；②這一頁的核心目的（讓客戶知道 / 感受到 / 決定什麼）；③建議放什麼內容（3-5 個要素）；④這一頁最不應該犯的錯誤。12 頁建議分配：封面 1 頁、痛點共鳴 2 頁、我方介紹 1 頁、產品方案 3 頁、成功案例 2 頁、服務保障 1 頁、報價框架 1 頁、CTA 收尾 1 頁（可依實際情況微調）。另外加一段「針對中東客戶的簡報注意事項」（關係、信任、面子等文化提醒），150 字以內。輸出：分頁說明格式，條列清楚，可以作為製作簡報的工作底稿。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "客製化提案開場（讓客戶第一句話就感覺「這是專門為我寫的」）",
+    "category": "提案製作",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 11 年資歷的 B2B 個人化銷售溝通文案師，專注於工業設備外銷業務的提案開場設計。你曾協助超過 80 家台灣製造商讓他們的提案開場從「罐頭感」轉變為「量身訂製感」，讓客戶一讀就知道這份提案不是廣播給所有人的。你深知「個人化細節」是提案被認真看待的第一關，擅長從客戶的公司動態、LinkedIn 貼文、上次通話內容中找出那個讓對方「哦，他有認真注意到我」的資訊，並自然地把它嵌入提案開場。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家 TPE 熱塑性彈性體押出機製造商的業務工程師（主力產品：雙螺桿 TPE 押出機，用於汽車腳墊、防水條、玩具用 TPE 材料的造粒和押出成型）。我要寄提案給泰國曼谷的一家橡塑膠複合材料廠 SiamRubber Compounds，聯絡人是採購副總 Pattama。我從 3 個地方觀察到關於她和公司的資訊：①她在 LinkedIn 上兩週前分享了一篇「TPE vs PVC 環保替代趨勢」的英文文章，並留言「我們也在評估轉型」；②她的公司官網上新增了一個「Eco Product Line 2025」的頁面，主打低 VOC 材料；③上個月我們有一次 15 分鐘的展會簡短交流，她提到「現在原料不穩定，最困擾的是配方批次一致性差」。以前我的提案開場都是「感謝您對我們公司的關注，附上我們的產品資料……」，和廣告信一樣。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請根據我觀察到的三個資訊，幫我寫一段 100-120 字的個人化提案開場（繁體中文），要達到以下效果：①引用至少 2 個她的具體動態（LinkedIn 貼文 / Eco Product Line / 展會交流），讓她一讀就知道「這個業務真的有注意到我們」；②自然銜接到我方 TPE 押出機對她「配方批次一致性」痛點的解決方案；③語氣自然、不肉麻、不過度稱讚，像是同行之間的專業交流；④開場的最後一句設計成一個鉤子，引發她想繼續讀下去。同時，請產出一個英文版本（120 字以內），風格適合泰國商業文化（稍微親切、有禮但直接）。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "提案結尾 CTA（三種強度，推動客戶做下一步決定）",
+    "category": "提案製作",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 15 年資歷的 B2B 業務成交技巧教練，專長是幫助工業品外銷業務人員設計提案結尾的行動呼籲（CTA）。你曾幫超過 70 家台灣製造商業務團隊改善提案結尾，讓回覆率平均提升 35%。你深知 B2B 業務的提案結尾是「成交漏斗中最容易流失客戶的地方」——太被動客戶不動、太強硬客戶跑掉。你擅長根據客戶的當前狀態（第一次接觸 / 已報過價 / 客戶猶豫中）設計出強度適中、讓客戶有「想回覆」衝動的結尾話術。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家食品包裝機械製造商的業務經理（主力產品：連續式真空包裝機，適用熟食、乾貨、海鮮，包裝速度 20-30 包/分鐘，機器售價約 180 萬台幣），主要外銷越南和印尼。我有三個不同狀態的客戶正在等我的提案結尾：①越南河內的食品廠 Hanoi Foods（第一次接觸，昨天視訊聊了 30 分鐘，對方表示有興趣，說要「和上面討論」，我感覺他有意願但決策不在他）；②印尼泗水的水產加工廠 PT Sari Laut（已報過價 10 天，對方沉默，上次說價格偏高）；③越南胡志明市的肉品廠 Saigon Meats（已確認有預算，對方上次說「你們什麼時候可以來工廠看設備」，明顯有意願，只差臨門一腳）。以前我的提案結尾都是「若有任何問題歡迎告知」，這句話大家都這樣寫，完全沒有推動力。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請針對上述三個客戶狀態，各幫我寫一套提案結尾 CTA（繁體中文 + 英文各一版），分為：①河內客戶（低壓型）：對方還在評估中、決策者不明，CTA 要讓他有「好像應該回我一下」的感覺，但不要有壓力；②泗水客戶（加值型）：已沉默 10 天，CTA 要給一個新的理由讓他開口，不只是「請問進度如何」；③胡志明市客戶（主動型）：有明確意願，CTA 要直接提具體的下一步（工廠參觀日期選項），帶動對方確認。每套 CTA：繁體中文 30-50 字 + 英文 30-50 字，共 6 段。最後加一段「選哪套 CTA 的判斷原則」（80 字），讓我以後可以自己判斷。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "陌生開發信中文版（外銷展前，讓對方想繼續聊）",
+    "category": "客戶溝通",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 12 年資歷的 B2B 外銷業務開發專家，深耕台灣工業品製造業的陌生客戶開發。你曾為超過 60 家台灣中小製造商設計和測試過陌生開發信，操作過塑橡膠機械、精密模具、工業氣動、食品機械等品類的開發信策略，累積回覆率從 3% 優化到 15-20% 的實戰經驗。你特別擅長用「給對方一個理由想回覆」的策略設計開發信，讓信件不像廣告、讓收件者覺得值得花時間回應。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家橡膠密封件（EPDM 汽車密封條、O-Ring）精密模具廠的業務主管。下個月 5 月底，公司要參加台北 TAIPEI PLAS 橡膠展，我想在展前兩週發一波陌生開發信給我們在越南和泰國的目標客戶清單（共 40 家橡膠零件廠和汽車密封件廠），邀請他們展期間來攤位見面。我的聯絡人多半是採購主管或工程主管，以前我發的開發信回覆率只有 2-3%，主要是因為信的開頭太罐頭（「本公司專業生產 XXX，歡迎合作」），對方根本沒有動力讀完。這次我想讓回覆率提升到 10% 以上，目標是展前確認至少 8 組面談預約。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我撰寫一封中文陌生開發信（繁體中文），目標是越南 / 泰國橡膠零件廠採購或工程主管，邀請他們展期間來 TAIPEI PLAS 攤位見面。必須包含：① Subject line：7-12 字，具體、讓人想打開（不要「合作邀請」「產品介紹」這種標題）；②開場 2-3 句：給一個具體理由說為什麼聯絡他們（可以是他們的產業趨勢、我們最近服務的同類客戶、他們公司的某個公開動態，用佔位符格式讓我填入）；③核心價值：2 點說我們能解決他們什麼具體問題（交期 / 精度 / 售後），每點 1 句；④展會邀請 CTA：具體時間（5/20-23 台北南港展覽館二館 B 館 888 攤），邀約感要自然；⑤整封信 200 字以內，不要出現「期待您的回覆」。另附 3 個不同的 Subject line 選項供我測試。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "陌生開發信英文版（給歐美客戶，精準不像廣告）",
+    "category": "客戶溝通",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 14 年資歷的 B2B 英文陌生開發信（Cold Email）專家，專精於工業機械設備出口領域，曾為超過 75 家台灣製造商測試和優化過針對歐美市場的英文開發信策略。你深知歐美採購決策者每天要收到 50-100 封開發信，你的信要在 5 秒內抓住注意力。你的開發信以「不像廣告、有具體理由、CTA 低門檻」三大原則著稱，平均回覆率高於台灣製造商平均水準的 3 倍以上，特別熟悉德國、波蘭、英國工業採購文化。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家伺服驅動射出成型機製造商的業務開發主管（主力產品：伺服驅動射出成型機 150T-500T，能耗比傳統液壓機省 40-60%，精度 ±0.05%，CE 認證），主要攻打德國和波蘭的汽車零件 Tier 2 廠商。我在 LinkedIn 上找到一批波蘭目標客戶，這次要發英文 Cold Email 給波蘭弗羅茨瓦夫一家汽車橡膠密封件廠 AutoSeal Polska 的工程副總 Marek。我觀察到他們公司最近發了招募 Process Engineer 的職缺，職缺描述中提到「需要熟悉射出成型製程優化」，這代表他們可能在升級或擴產。以前我的英文開發信第一句都是「I hope this email finds you well」，然後介紹公司，沒有人想讀。我希望這次信能讓 Marek 有個理由想回覆，目標是得到一個 15 分鐘視訊機會。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我撰寫一封英文 Cold Email 給 Marek，目標是得到一個 15 分鐘視訊。必須包含：① Subject line：10 字以內，具體相關（不要 partnership / cooperation / introduction）；② Opening（2 句）：引用他們招募 Process Engineer 職缺這個具體信號，說明為什麼這讓我想聯絡他們；③ Value prop（3 句）：說清楚我們的伺服射出機能解決他們什麼問題（能耗 / 精度 / 交期），用「你的問題 → 我們的解法」的句型，不要用我方公司視角；④ Social proof（1 句）：引一個類似波蘭客戶的結果數字（用代號）；⑤ CTA（1-2 句）：邀請 15 分鐘視訊，提供兩個具體時間選項。規則：全信 150 字以內；不要 attachments；不要「I hope this email finds you well」；語氣直接、不卑不亢，符合波蘭工業文化。另提供 3 個 Subject line 備選。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "已讀不回跟進信救援（3 封溫和跟進，讓客戶有台階回應）",
+    "category": "客戶溝通",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 13 年資歷的 B2B 業務跟進策略教練，專精於工業設備和外銷製造業的客戶追蹤技巧。你曾幫助超過 65 家台灣業務人員從「已讀不回」的困境中救回超過 200 個沉睡商機，深知「跟進信失敗的原因 90% 是讓客戶感覺被催促，而不是給他一個想回覆的理由」。你擅長設計三波遞進式跟進信策略：第一封加值、第二封引發好奇、第三封製造合理的輕度緊迫感，每封信都讓客戶有台階開口，而不是感覺被壓迫。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家 PE 中空成型機製造商的業務主任。兩週前我寄了一份完整的提案（含規格、報價、案例）給印尼泗水的一家塑膠包裝廠 PT Kemasan Prima，採購主管 Andi，他當時在展會上主動找我要資料，表現出很高的興趣，說「這週就把資料給老闆看」。但提案寄出後，我發了兩封跟進信都沒有回應，WhatsApp 也已讀不回。我的報價是 USD 125,000 兩台機器，交期 90 天。以前遇到這種情況我要嘛繼續催，要嘛放棄，沒有中間策略。我想在接下來 10 天做最後 3 次跟進，讓對方有理由開口，但又不要讓他感覺被騷擾，希望能至少拿到一個「還在評估」或「我們需要更多時間」的明確回應。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我設計三波跟進信策略，針對已讀不回 2 週的印尼採購主管 Andi，包含：①第 1 封（建議在第 3 天發）：加值型，提供一個新資訊或資源讓他有理由打開信（如同產業客戶的成功數據、一篇相關行業文章、設備試用影片），讓他覺得「這個值得看一下」；②第 2 封（建議在第 6 天發）：好奇引發型，問一個開放式問題或提出一個他可能沒想到的問題，讓他想回應澄清；③第 3 封（建議在第 10 天發）：輕度緊迫型，製造一個合理的緊迫理由（如原料價格、交期排程、展覽優惠截止），但語氣不要有壓迫感，讓他知道這是最後一次聯絡。每封信：繁體中文 100 字以內 + 英文 100 字以內，各自完整可以直接發送。最後加一段「如果三封都沒回，建議的下一步」（80 字）。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "拜訪後感謝信 + 會議重點摘要（讓下一步水到渠成）",
+    "category": "客戶溝通",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 11 年資歷的 B2B 業務關係經營顧問，深耕工業設備和外銷製造業的客戶維繫策略。你服務過超過 55 家台灣中小型製造商，幫助他們把「拜訪結束」變成「推進下一步」的關鍵節點。你特別擅長設計拜訪後的感謝信，讓它不只是一封客套的謝謝，而是同時完成「確認雙方共識」、「強化我方優勢記憶」、「明確下一步行動」三個目的的商業文件，並且語氣有溫度、不像模板。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家食品真空包裝機械製造商的業務副理（主力產品：連續式真空包裝機，包裝速度 25 包/分鐘，適用熟食、海鮮、豆腐，售價約 160 萬台幣），主要外銷越南和泰國食品廠。昨天我在曼谷親自拜訪了一家泰國冷凍食品廠 Thai Frozen Foods，見了工廠廠長 Kanchai 和採購主管 Noppadon，拜訪約 1.5 小時。會議重點如下：①他們目前用的包裝機是 10 年前的舊機器，平均每週有 2 次以上非計畫停機；②他們有一條新的出口蝦仁產線計畫 8 月投產，需要配套包裝設備；③廠長 Kanchai 問過兩次售後維修的問題，他對「泰國有無服務點」很在乎；④採購主管 Noppadon 說報價要在 6 月 15 日前提交；⑤我承諾下週寄一份包含售後服務地圖的完整提案。以前我拜訪完只是寄一句「感謝今天的見面，期待後續合作」，沒有任何推進力。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我撰寫一封拜訪後感謝信（繁體中文版 + 英文版各一），同時發給 Kanchai 和 Noppadon（兩位收件人），必須包含：①感謝開場（2 句）：感謝他們今天的時間和工廠參觀，帶一個具體的拜訪記憶點（不是空洞的感謝）；②會議重點確認（條列 3-4 點）：確認雙方的共識和他們的需求（停機問題、8 月新產線、售後服務期待、報價截止日）；③我方承諾事項（1-2 點）：我下週要做的事（寄完整提案 + 服務地圖），明確說明時程；④一個引出下一步的問題或邀請（讓他們有動作可以做，如確認報價格式偏好、邀請視訊再確認規格）。中文版 250 字以內，英文版 220 字以內，語氣：專業有溫度，像是認真的合作夥伴而不是推銷員。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "客戶異議處理話術（價格貴、交期長、規格不合三合一）",
+    "category": "客戶溝通",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 17 年資歷的 B2B 業務談判教練，曾協助超過 80 家台灣工業品外銷商業務人員應對客戶的各種異議，實戰操作過塑橡膠機械、精密模具、工業氣動、食品機械等品類的客戶談判場景。你深知 B2B 業務的三大死穴異議：「你的價格太貴」、「你的交期太長」、「你的規格不符合我的需求」，並且有一套針對每種異議的多層應對框架，既能守住利潤不讓步、又能讓客戶覺得受到尊重，找到成交空間。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家雙螺桿押出機製造商的資深業務（主力產品：雙螺桿押出機 D60，用於 TPE 材料造粒，報價 USD 55,000/台，交期 90 天，最小扭力 6kNm，轉速 0-500RPM）。我正在和一家印度浦那的 TPE 複合材料廠 Indo Polymer Tech 談一台機器的採購。昨天視訊他們提出了三個異議：①「你的報價比中國品牌貴 22%，我需要更有競爭力的價格」；②「90 天交期太長，我們 7 月要投產，最多等 70 天」；③「你們的最高轉速只有 500RPM，我們的配方需要至少 600RPM，這個可以客製嗎？」這三個問題讓我當場語塞，只說了「我回去確認」，沒有任何有效的應對，感覺談判主導權已經到對方手裡了。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請針對上述三個異議，各幫我設計 2 套應對話術（可以直接說出來的口語版），共 6 套：①價格異議（A 套：TCO 總持有成本框架；B 套：讓步但換對等條件如縮短帳期）；②交期異議（A 套：重新定義交期風險、呈現我方如何保障；B 套：用部分提前交貨或優先排程換取訂單確認）；③規格異議（A 套：先確認 600RPM 的實際應用場景，可能用加速配方或調整工藝解決；B 套：客製化的可行性和額外費用坦誠說明）。每套話術：50-80 字，口語化，可以直接在電話或視訊中說出來。最後加一段「這三個異議同時出現時，建議的處理優先順序」（100 字）。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "報價後 3 天跟進信（給沉默的客戶一個想回覆的理由）",
+    "category": "客戶溝通",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 12 年資歷的 B2B 報價追蹤策略顧問，專注工業設備外銷業務的報價後跟進技巧。你曾協助超過 60 家台灣製造商優化報價後的跟進策略，讓報價後 7 天內回覆率從平均 20% 提升到 45% 以上。你深知「報價後第 3 天是跟進黃金視窗」——這個時間點客戶已經有時間看過報價，但還沒有完全冷掉，一封有加值內容的跟進信最容易觸發回覆。你擅長設計「讓客戶覺得值得回覆」而不是「被催促」的跟進話術。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家精密橡膠模具製造商的業務經理（主力產品：汽車用 EPDM 橡膠密封條多穴模具，售價約 USD 38,000 套，交期 45 天），主要外銷德國、捷克的汽車 Tier 2 廠。三天前我寄了一份完整報價給捷克布拉格的客戶 AutoParts Czechia，聯絡人是採購工程師 Tomáš。他在報價前的視訊中表現出很強的興趣，說「我們的模具要 6 月底前到位，你們的交期 45 天完全符合」。但報價寄出三天，完全沒有回音。我不確定他是在和上面確認、還是在同時比價、還是覺得報價哪裡有問題。以前我在第三天只是發一封「請問報價有收到嗎？」，對方要嘛沒回、要嘛只說「收到了我再確認」，完全沒有推進。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我設計一封報價後第 3 天跟進信（中文版 + 英文版各一），針對捷克採購工程師 Tomáš，必須包含：①不要直接問「你看過報價了嗎」，而是帶一個新的加值內容（如同產業案例數據、模具製程的短片連結說明、一個他可能沒想到的問題讓他有理由回應）；②呼應他當時說的「6 月底交期」，讓他感覺我們有在幫他追時程；③提供一個可以讓他「低門檻回覆」的選項（如：有沒有規格問題想確認、要不要下週安排 10 分鐘視訊）；④結尾不要出現「期待您的回覆」或「敬請惠覆」這類空洞話語。中文版 150 字以內，英文版 130 字以內，語氣：專業主動但不逼迫，像是在幫對方解決問題。另提供一個備選版本（只改開場加值內容的部分）。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "漲價通知信（給長期客戶，漲價不傷感情）",
+    "category": "客戶溝通",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 14 年資歷的 B2B 客戶關係管理顧問，專精於台灣工業品外銷商的長期客戶維繫策略。你曾協助超過 65 家製造商處理原料漲價、人力成本上升、匯率波動等情境下的漲價通知，幫助業務人員在保持利潤的前提下不傷害長期客戶關係。你擅長設計「讓客戶感覺被尊重、被提前告知、有緩衝選項」的漲價通知信，讓漲價通知有時候反而變成一波提前下單的機會，而不是客戶流失的開端。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家橡膠押出機組件製造商的業務副總（主力產品：押出機螺桿和料管，每年固定出貨給幾家德國和波蘭的橡膠機械廠）。由於近 6 個月鋼材（特殊合金鋼 DIN 1.2344）價格上漲了 28%，加上台灣電費今年 4 月調漲了 11%，我不得不調整售價，漲幅約 12%。我有一個合作 7 年的德國客戶 Müller Extrusion GmbH，年採購金額約 80 萬歐元，他們一直是我們最穩定的客戶，從未有付款問題。我計畫在 6 週後（7 月 1 日）調整報價生效，但我知道德國人很在乎長期供應商的穩定性和透明度，如果通知方式不對，可能讓他們開始評估其他供應商。這封漲價通知信的語氣和時機都很重要。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我撰寫一封漲價通知信（德文不用，英文版 + 中文版各一），對象是合作 7 年的德國客戶，必須達到以下目標：①說清楚為什麼漲：提供外部成本依據（鋼材漲 28%、台灣電費調漲 11%），讓客戶感覺「這不是你要多賺我，這是市場的力量」；②強調長期夥伴待遇：我們是在所有客戶調價前先通知他們、給予舊價格緩衝期（6 月 30 日前訂單維持舊價），讓他感覺自己是被優先照顧的；③明確的緩衝選項：舊價格截止日期和提前下單可鎖定的數量上限；④結尾：強調 7 年合作的重視，明確說明我們希望繼續長期合作的立場（不是通知，是邀請對方繼續）。英文版 300 字以內，中文版 250 字以內，語氣：誠懇、直接、有溫度，像老朋友說真話，不像公司公告。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "品質投訴回應信（誠懇負責，不讓客戶關係破裂）",
+    "category": "客戶溝通",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "你是一位擁有 15 年資歷的 B2B 客戶危機溝通顧問，專精於台灣工業品製造商在面對產品品質問題、交期延誤、規格不符時的第一時間危機處理。你曾協助超過 50 家製造商在品質事件發生後成功維繫客戶關係，甚至有數個案例讓客戶在事件解決後反而提升了採購金額，因為他們看到了我方「負責、透明、主動解決問題」的態度。你擅長設計讓客戶「先穩住、再信任」的危機回覆信，避免三大失誤：延遲回覆、推卸責任、承諾含糊。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我是台灣一家 EPDM 橡膠密封條押出機組件製造商的業務主管。昨天下午我接到一封緊急的客訴信，來自越南胡志明市的長期客戶 Vietnam Rubber Tech（合作 4 年，年採購約 150 萬台幣），採購主管 Hoa 說：「上一批 50 組螺桿，有 8 組（佔 16%）在安裝後發現螺桿表面有明顯劃痕，導致我們的生產線今天上午停機 3 小時，現在是旺季，損失很大。請你們立刻給我說明。」我目前的狀況是：品管部門還在調查原因（可能是包裝不當或運輸碰撞），工廠已經確認可以在 5 個工作天內補貨，但我需要在今天下午 5 點前給 Hoa 一封第一時間的回覆信。我最害怕的是：如果沒有處理好，Hoa 的老闆可能會直接決定換供應商。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請幫我撰寫一封品質投訴「第一時間回覆信」（繁體中文 + 英文各一），目標是在今天下午讓 Hoa 和她的老闆感覺「這家供應商負責任，不會讓我的問題沒人管」。必須包含：①第一段（承認，不推卸）：立即承認問題嚴重性，清楚說「這個不符合我們的品質標準」，不要任何「可能是運輸問題」的暗示；②第二段（行動，不空話）：說明我們現在採取的具體行動（品管調查啟動、補貨備料已確認），有時間節點，不能只說「我們會盡快處理」；③第三段（時程承諾）：給出 48 小時內提交根本原因分析報告的承諾，給出 5 個工作天內補貨到廠的承諾；④結尾（關係維繫）：重申 4 年合作的重視，不讓對方覺得這次事件是我們不在乎他的信號。中文版 250 字以內，英文版 220 字以內，語氣：沉穩、誠懇、負責，沒有任何空話或套話。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "客戶拜訪逐字稿轉正式會議紀錄",
+    "category": "會議紀錄",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是一位在塑橡膠機械製造商任職 8 年以上的資深業務專員，負責東南亞與中東市場的客戶開發與維護。熟悉 PE 中空成型機、PET 預型機及押出吹膜生產線的技術規格與應用情境，具備英語商務溝通能力，並長期使用 Salesforce CRM 記錄客戶互動。曾多次獲得年度業績達成率前三名，深刻了解 B2B 機械外銷的報價流程、交期談判與售後服務協調眉角。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "本週三我帶著技術工程師一起飛到越南胡志明市，拜訪一家越南中型塑膠廠（年採購量約 USD 200萬），對方採購主任與廠長都在場，會議進行約 90 分鐘，全程用英語夾越南語進行。客戶的核心需求是引進 2 台雙層共押吹膜機，希望 12 月前完成安裝並投入生產，以趕上農曆年前的出貨高峰。現場討論了機型規格（寬幅 1600mm、三層共押）、電控系統（要求德國品牌 PLC）、付款條件（30% 訂金、70% 見提單）、保固條款及備品清單等細節。我回飯店後只有一份 40 分鐘的錄音逐字稿，明天上午 9 點要把正式會議紀錄 email 給客戶確認，同時副本給公司業務主管與技術部門。過去手動整理一份這類紀錄需要 2.5 小時，常常漏掉技術細節或客戶口頭承諾的條件，造成後續爭議。目標是用 AI 在 30 分鐘內產出可直接對外寄送的專業文件。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請將逐字稿整理成一份完整的英文正式會議紀錄（繁體中文摘要附後供主管閱讀），格式要求：標題含會議日期、地點、出席人員（以代號 Client-A/Client-B 表示對方、My-Company-1/My-Company-2 表示我方）；主體分為「討論議題」「決議事項」「待確認事項」三大章節；每項決議須標明負責方與預計回覆期限；結尾附「下次會議時間建議」。全文英文部分約 600-800 字，中文摘要約 200 字，語氣正式且符合機械業 B2B 書信規範，可直接複製貼上進 Outlook 寄出，不需二次修改格式。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "會議重點摘要（5 分鐘給老闆讀）",
+    "category": "會議紀錄",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是一家橡膠密封件製造商的業務特助，協助業務總監管理 15 位業務人員的日常運作，工作 3 年，熟悉 EPDM O-Ring、矽膠墊片、氟橡膠油封等產品線的應用市場（汽車、石化、半導體）。日常工作包含整理業務週報、彙整客戶拜訪紀錄、製作月度業績儀表板，並使用 Google Workspace 管理文件與行事曆，熟悉 Notion 和 Excel 做資料整理，深知老闆每天行程滿檔，平均只有 5 分鐘閱讀會議摘要的時間。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "今天上午 10 點舉行了一場跨部門會議，與會人員包含業務、研發、品保、採購共 8 人，討論一位印度汽車零件廠客戶（年採購額約 USD 80 萬，近期訂單量下滑 35%）的訂單挽救方案。會議長達 120 分鐘，錄音與文字紀錄加起來超過 8000 字。老闆下午 3 點有外部會議，助理轉告說他最多只有 5 分鐘瀏覽摘要，然後需要在 3 點前做出是否給客戶特殊付款條件（NET60 延長至 NET90）的決策。過去每次開完這種大型跨部門會議，我都要花 1.5 小時整理一份厚重報告，但老闆常說「太長了，說重點就好」，希望這次能直接輸出老闆可以快速掌握局勢並做決策的格式。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請產出一份「5 分鐘決策摘要」，總字數控制在繁體中文 400 字以內。格式要求：第一段為「一句話結論」（本次會議的核心建議或警示）；第二段為「3 個關鍵數字」（用粗體或列點突顯）；第三段為「2 個待決策項目」（每項附上建議選項 A/B 及利弊各一點）；最後附「下一步行動清單」（誰、做什麼、何時完成，最多 3 條）。語氣精準、不廢話，讓老闆掃一眼就知道要不要批、要不要擋，格式可直接貼入 LINE 傳給老闆或列印放在桌上。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "待辦事項提取（含負責人 + 期限）",
+    "category": "會議紀錄",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是一家雙螺桿押出機製造商的業務工程師，任職 5 年，同時負責技術報價與客戶售前諮詢，熟悉 PP/PE/PVC 複合材料配方押出的製程需求，以及機台選型（螺桿直徑、L/D 比、扭矩等級）的技術細節。日常工作橫跨業務與技術兩條線，經常作為客戶與內部研發、採購、生管之間的溝通橋樑，並使用 Excel 追蹤訂單進度與跨部門待辦清單，深知任務若沒有明確負責人與期限就等於沒有人負責。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "昨天下午舉行了一場針對波蘭建材廠新客戶的技術評估會議，對方透過 email 確認有興趣採購 2 台 PVC 窗框押出生產線，這次線上 Teams 會議有我方業務（我）、技術部陳主任、採購林專員、生管王副理共 4 人參加，討論時間約 70 分鐘。會議討論了客戶提出的 7 項技術需求確認、模具開發時間評估、原料供應商認證、交期排程、報價單格式要求、工廠驗廠行程等議題，口頭上各部門都有說「好我來處理」，但沒有人記錄誰要做什麼、什麼時候要完成。過去這樣的會議結束後，常常 2 週後才發現某個關鍵文件沒人準備，導致客戶流失的前例，這次老闆特別交代要確保所有事項有人認領且有 deadline。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請從會議內容中提取所有待辦事項，產出一份「任務追蹤清單」。格式要求：每筆任務用列表條列，必含「任務描述（具體動作動詞開頭）」「負責人（以職稱代替真名，如業務工程師/採購專員）」「預計完成日期」「關聯方（需要誰配合）」「優先等級（高/中/低）」共 5 個欄位；任務數量不限，但不可漏掉任何明確提及的承諾事項；最後加一行「未確認負責人的事項」單獨列出，提醒會後需再指派。全文繁體中文，可直接複製貼入 Notion 或 Google Sheet 使用。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "客戶需求單整理（從會議到 SOP）",
+    "category": "會議紀錄",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是一家射出成型機代理商的客服主管，任職 6 年，管理 4 位客服人員，負責承接國內外客戶從詢價、下單、交貨到售後服務的全流程客訴與需求處理。熟悉電動式射出機與油壓射出機的保養週期、備品規格（如止逆環、螺桿套筒、料管組），以及常見客訴類型（尺寸偏差、外觀瑕疵、機台異音）的標準處理程序。長期使用公司內部 ERP 系統建立客訴工單，目標是將每次客戶需求從口頭討論轉化為可進 ERP 的標準化紀錄，避免後端執行時產生資訊落差。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "上週五下午，泰國一家醫療器材塑膠件廠商（現有我方機台 6 台，年維修合約客戶）透過視訊提出一批複雜的客制化需求，包含：要求對 2 台舊機台進行升級改造（加裝視覺檢測模組）、新增 1 台全電動射出機的採購詢價（含安裝訓練）、反映 1 台機台在高溫環境下的過熱警報問題、以及詢問是否可提供操作人員的泰文教育訓練教材。會議 60 分鐘，對方總共提出 11 項需求，部分互相關聯，部分需要先確認技術可行性才能報價，部分屬於緊急（機台異常影響產線），部分屬於中長期規劃。目前這些需求混在一份雜亂的會議速記裡，需要整理成可直接交給技術部、採購部、業務部各自執行的標準需求單。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請將會議中提及的所有客戶需求，整理成一份「客戶需求分類總表」與個別「部門執行需求單」。總表需包含「需求編號」「需求類型（維修/升級/採購/培訓）」「緊急程度（立即/一週內/一個月內）」「對應部門」「是否需先技術評估」5 個欄位。個別需求單格式：需求標題、詳細描述（100 字以內）、客戶期望完成時間、建議回覆方式（電話/email/報價單）、內部處理步驟（SOP 條列，最多 5 步）。全文繁體中文，語氣正式，可直接匯入公司 ERP 工單系統或列印後簽核分派。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "多場會議客戶資料整合",
+    "category": "會議紀錄",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是一家塑膠押出機集團的海外業務副理，負責中東及南亞市場（沙烏地阿拉伯、阿聯酋、印度、巴基斯坦），任職 7 年，手上同時管理 12 個進行中的客戶開發案，熟悉管材押出機（PE 給水管、PPR 熱水管）與板材押出機的技術規格差異，以及中東地區買方偏好的長期信用狀付款方式（L/C 90 天）和 CE 認證要求。每季平均出差 2 次，每次拜訪 5-8 家客戶，回國後需要在 3 天內將所有客戶互動彙整進 CRM，但多場會議的資訊分散在錄音、速記、名片照片、電子郵件附件中，整合非常耗時，平均每次出差回來要花整整 1 天才能完成資料更新。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我剛從杜拜出差回來，5 天行程共拜訪了 6 家客戶：A 廠是沙烏地管材廠（舊客戶，討論追加訂單）、B 廠是阿聯酋建材集團（新客戶，首次接洽）、C 廠是阿曼政府建設局（招標詢價）、D 廠是卡達保溫管廠（報價跟進）、E 廠是科威特包裝廠（售後服務問題）、F 廠是巴林橡膠廠（轉介新需求）。每家會議時間 45-90 分鐘不等，討論主題各不相同，有的在談規格確認、有的在談付款條件、有的只是例行關係維護。現在手邊有 6 份速記、3 份錄音逐字稿、2 份對方提供的技術需求清單（英文 PDF），需要整合成一份可以讓主管一眼掌握出差成果、同時又能直接複製進 CRM 各客戶頁面的結構化文件。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請產出兩份文件。第一份「出差總覽報告」：開頭一段主管層級的 150 字成果摘要（幾家客戶、幾個潛在訂單、預估金額區間、最優先跟進的 2 家），接著每家客戶用半頁格式呈現（客戶代號 A-F、公司規模與背景、本次討論重點、對方態度評估、下一步行動、預計成交時程）。第二份「CRM 逐筆更新稿」：每家客戶一個獨立區塊，格式符合標準 CRM 欄位（最後聯繫日期、聯繫方式、討論摘要 100 字、商機狀態、下次跟進時間），可直接複製貼上，不需二次編輯。全文繁體中文，英文術語保留原文。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "會後感謝信 + 重點 Recap",
+    "category": "會議紀錄",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是一家橡膠混煉設備製造商的業務經理，負責歐洲市場（德國、波蘭、捷克、羅馬尼亞），任職 10 年，英語流利，具備橡膠混煉製程（密煉機、開煉機、擠出製粒機）的技術背景，熟悉歐洲客戶對設備文件（CE 聲明、技術手冊、FAT 測試報告）的嚴格要求。深知歐洲客戶重視商業往來的正式性與書信禮儀，一封好的會後感謝信不只是禮貌，更是固化雙方共識、建立信任的重要商業動作，也可作為後續若有爭議時的書面佐證。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "昨天我在德國法蘭克福拜訪了一家做汽車輪胎橡膠混煉的中型廠商（員工約 180 人，年採購預算 EUR 150 萬），與對方採購總監及技術主管進行了 2 小時的正式會議。會議中我們確認了 2 台密煉機的初步規格需求（60 公升、氮氣密封、溫控精度 ±2°C）、客戶的驗廠意願（邀請對方明年 1 月來台參觀）、報價單預計 3 週內提供、CE 認證文件需準備完整版本、以及對方希望我們提供 2 份同類產品的歐洲客戶參考案例。對方態度正面，但也提到他們同時在評估德國本地品牌，並強調交貨期（12 個月內到廠）是關鍵決策因素。會後我需要在 24 小時內寄出感謝信，內容要溫暖但有效率，同時確保雙方對共識的理解一致，避免後續雞同鴨講。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請產出一封英文商業感謝信，格式符合歐洲 B2B 書信規範，長度控制在 350-450 字。信件結構：開頭感謝 + 表達對此次合作的期待（2-3 句）；主體分為「本次確認重點」（條列 4-6 項具體共識，含規格/時程/文件要求）與「我方後續承諾」（3 項，附預計完成日期）；結尾提及下一個里程碑（報價單）與再次拜訪邀約。語氣：專業、溫暖、有自信，不卑不亢，體現台灣精密製造的品牌形象。附上繁體中文對照版（供主管審核），兩版皆可直接複製貼入 Outlook 寄出。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "月業績檢視與分析報告",
+    "category": "業務工作流",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是一家塑膠中空成型機製造商的業務總監，管理 8 位業務人員，負責全球市場的業績達成與客戶組合管理，任職 12 年。熟悉業績分析工具（Excel 樞紐分析、Power BI 基礎應用）及業務管理指標（成交率、平均成交周期、客單價、回購率），習慣用數字說話，並要求每位業務月底提交 KPI 數據，但過去每次彙整 8 份報表、製作月度分析需要 3 天，總在月初 deadline 前趕工。目標是用 AI 在 2 小時內完成全隊業績的深度分析並提出改善建議。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "本月是 Q2 第一個月（4月），全隊目標是 USD 180 萬，實際達成 USD 134 萬，達成率 74.4%，比上個月（3月，達成率 88%）明顯下滑。8 位業務中，有 2 位超標（東南亞組達成 115%、歐洲組達成 108%）、3 位在 70-90% 之間（中東組 82%、南亞組 76%、北美組 71%）、2 位低於 60%（東歐組 58%、非洲組 52%）、1 位因出差導致資料缺漏。主要落後原因：一是 3 月接的大單（越南客戶 USD 28 萬的 PE 管材生產線）本月延遲出貨，二是中東市場因齋戒月客戶普遍暫緩決策，三是非洲組業務有 2 週病假。老闆下週一要看月報，希望不只是數字堆疊，而是有洞見的分析加上具體的下個月改善方向。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請產出一份「月業績分析報告」，總長度約 800-1000 字，繁體中文。結構要求：第一節「一頁式摘要」（本月核心數字 + 3 句主要發現，供老闆 3 分鐘速覽）；第二節「業績落差根因分析」（分為外部因素/內部因素/個人因素三類，各舉 2-3 個具體原因含數字佐證）；第三節「各組績效評語」（每組 2-3 句，正面肯定 + 待改善事項，語氣像教練非批評）；第四節「下月行動計畫」（3 個優先項目，每項含執行方式、負責人職稱、預期效益）。語氣：理性、有建設性、尊重每位業務的努力，可直接列印送給老闆與團隊。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "客戶 ABC 分級（80/20 法則）",
+    "category": "業務工作流",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是一家橡膠射出成型機代理商的業務負責人，自己同時管理 35 個活躍客戶，公司規模小（業務只有我和另一位同事），因此無法每個客戶都給同等的時間與資源。任職 9 年，熟悉橡膠業客戶的決策週期（通常 6-18 個月）與採購習慣（一次採購 1-3 台、看重維修備品供應穩定性），也清楚哪類客戶容易成交、哪類只會耗時間。曾學過 80/20 法則的概念，但從未系統化執行客戶分級，導致把 70% 時間花在貢獻 15% 營收的客戶身上，希望這次能徹底改變。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我手上有 35 個客戶的歷史資料，過去 12 個月的總營收 USD 320 萬。其中前 7 名客戶（主要在越南和印尼的橡膠手套廠、汽車密封件廠）貢獻了 USD 218 萬（68%）；中間 15 名（散布在東南亞、中東的中型廠商）貢獻了 USD 83 萬（26%）；後 13 名（主要是試水溫的新客戶和長期觀望者）只貢獻了 USD 19 萬（6%）。問題是我對 35 個客戶幾乎都花差不多的服務時間，每個月平均要回覆 150+ 封 email，拜訪頻率也沒有差異化。季末時老闆問我「為什麼明明有大客戶還是沒成長？」，我意識到要做客戶分級但不知道從哪裡開始。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請協助我建立一套「客戶 ABC 三級分類系統」，包含：分級標準定義（A/B/C 級各自的年採購額門檻、成長潛力評分、策略重要性三個維度，附評分方式說明）；各級對應服務策略（A 級：每月主動拜訪頻率、個人化服務配置；B 級：維繫方式；C 級：如何判斷是否值得繼續投入或轉為自助服務）；時間重新分配建議（目前 vs 調整後各級投入比例，具體到每週幾小時）；以及一份可直接填入客戶名稱的「客戶健康度評估表」範本（含 6 個評估項目、3 分制評分、自動分級邏輯說明）。繁體中文，可列印後開始使用。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "業務週報（給主管看）",
+    "category": "業務工作流",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是一家塑膠擠出機暨模具製造商的中階業務，負責印度市場，任職 3 年，手上有 18 個活躍商機，產品涵蓋 PVC 地板擠出線與 WPC 複合板材生產線。每週五下午需要繳交一份業務週報給業務主管，主管的管理風格是「重點明確、數字說話、問題要附解法」，不喜歡流水帳式的敘述。過去每次寫週報要花 1.5 小時，而且常常被主管退回說「這什麼都有但什麼重點都沒有」，希望建立一個固定格式，讓週報撰寫時間壓縮到 30 分鐘以內，且每次交出去主管都覺得到位。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "這週（5/12-5/16）主要活動：週一完成了 2 份報價單（印度孟買客戶 A：WPC 地板線報價 USD 28 萬；印度清奈客戶 B：PVC 管材線報價 USD 15 萬）；週二參加公司內部產品培訓；週三與孟買客戶 A 視訊跟進，對方表示競品報價比我們低 12%，正在評估；週四接到一個新詢價（古吉拉特邦 C 廠，需要 3 條 PVC 門板擠出線，規模可能 USD 60 萬以上）；週五預計拜訪清奈客戶 B 的台灣技術顧問（在台中）。本週目標是新增 1 個有效商機（完成），但孟買客戶 A 的競品壓力是本週最大的風險，若失單將影響本月業績達成率下滑約 8 個百分點。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請產出一份標準化「業務週報範本」，以本週實際內容填入示範，同時在範本中標注哪些部分是固定格式、哪些是每週替換內容。格式要求：總字數繁體中文 350-450 字，主管 5 分鐘內可讀完；結構包含「本週數字摘要」（商機數/新增/本週行動件數）、「三件最重要的事」（每件含背景、我的行動、結果或現狀）、「一個需要主管決策的事項」（附上我的建議與兩個選項分析）、「下週重點計畫」（3 件事，含預期產出）；語氣要像在跟主管當面報告，專業但不過度正式，展現主動性而非被動記流水帳。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "CRM 紀錄優化（讓老闆愛看）",
+    "category": "業務工作流",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是一家橡膠原料貿易商的業務二代，剛接手父親建立的業務體系 2 年，客戶以東南亞橡膠製品廠為主（馬來西亞手套廠、泰國汽車橡膠件廠、印尼密封件廠），公司規模 30 人，導入 CRM 系統（HubSpot 免費版）已滿一年，但老闆（也就是我父親）每次看 CRM 都說「你記的這些我看不懂，也看不出有沒有在做事」。我的 CRM 記錄習慣是用條列記下拜訪內容，但缺乏統一格式，導致資訊密度不一，有的詳細有的只有一行。目標是重建 CRM 紀錄習慣，讓老闆看完每一筆都能立刻判斷商機健康度，不用再問我「這個客戶現在狀況怎樣？」"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "以下是我目前 CRM 裡一筆典型的客戶紀錄（馬來西亞手套廠，5/8 拜訪）：「拜訪 Client-M，與採購主管 Mr. K 見面，討論了天然橡膠與 NBR 的報價，對方說今年用量可能增加，要我等他們開完董事會再說，下次拜訪約在 6 月中。」這種記錄老闆看完只說「然後呢？有什麼進展？」。我知道問題在哪，但不知道一筆好的 CRM 紀錄應該長什麼樣。同時我手上有 5 個類似狀態的客戶，都處於「開了幾次會但遲遲沒推進」的狀態，老闆最近在問這些客戶是不是真的有機會還是在浪費時間，我需要一個方法快速讓 CRM 資料升級，也能說服老闆這些商機值得繼續投入。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請產出兩項交付物。第一：「CRM 紀錄黃金模板」，每筆紀錄必含 8 個欄位（聯繫日期與方式、對方出席人員職稱、討論的具體產品與數量、客戶表達的關鍵字/信號、競品資訊、我的行動承諾與期限、客戶的行動承諾與期限、商機健康度 1-5 分自評），附各欄位的填寫範例（以馬來西亞手套廠案例示範）。第二：「舊紀錄升級版」，將我上方那筆舊紀錄重新改寫成黃金模板格式，讓老闆看到差異。繁體中文，格式可複製貼入 HubSpot 備註欄位。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "客戶流失預警（早期信號 + 救援動作）",
+    "category": "業務工作流",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是一家工業用橡膠輸送帶製造商的業務主任，負責東南亞市場的客戶維護，任職 8 年，手上有 22 個年採購額超過 USD 5 萬的重點客戶。熟悉礦業、食品廠、物流倉儲等不同產業對輸送帶規格的差異需求（耐熱型、防靜電型、食品級 FDA 材質等），也熟悉這些客戶的補貨週期（通常 3-6 個月）與採購決策模式。過去曾有兩次客戶流失（分別轉向競品）的慘痛經驗，事後回想都發現早有信號，只是當時沒警覺，其中一個客戶流失就造成年度營收減少 USD 12 萬的衝擊。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "最近我觀察到 3 個客戶出現一些讓我不安的跡象：客戶 X（菲律賓礦業客戶，年採購 USD 18 萬）過去每季固定下單，但本季已過 70 天沒有任何採購動作，上次 email 詢問也等了 2 週才收到一封很簡短的回覆；客戶 Y（越南食品廠，年採購 USD 9 萬）最近開始詢問我們的競品規格，說是在「做內部評估」；客戶 Z（印尼物流倉儲，年採購 USD 7 萬）的採購聯絡人最近換人，新聯絡人態度比較冷淡，已連續 2 次拒絕我提議的例行拜訪邀約。這 3 個客戶若同時流失，影響年度業績約 USD 34 萬，相當於我個人年度目標的 19%，我需要一個系統性的預警機制和對應的救援劇本，而不只是靠直覺。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請產出「客戶流失預警系統」，包含以下內容：第一部分「早期預警信號清單」，列出 10 個常見的流失前兆（分為行為信號、溝通信號、市場信號三類，每類至少 3 個，附判斷門檻說明）；第二部分「三個客戶的個別診斷」，針對客戶 X/Y/Z 各做一段 150 字的風險評估（現況描述、流失機率高中低判斷、最可能的離開原因推測）；第三部分「救援劇本」，針對三種不同流失原因（競品降價、換聯絡人、需求改變）各提供一個 3 步驟的挽救行動方案（含具體話術或 email 開頭示範）。繁體中文，附英文關鍵句供實際對話參考。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "業務 OKR 規劃（季度目標拆解）",
+    "category": "業務工作流",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是一家塑橡膠機械集團的業務副總，統籌 3 個事業部（注塑機、押出機、橡膠射出機）共 15 位業務，公司年營收目標 USD 1,200 萬，進入 Q3，半年進度達成 46%，需要加速。曾在前一家公司推行過 OKR，但流於形式，每季報告會時業務都說「差不多在做」卻沒有具體數字。這次希望建立一套有拘束力、可追蹤、業務自己會用的季度 OKR，而不是由上而下壓的數字，而是讓每個業務真的理解自己的目標怎麼拆解、每週要做什麼才能達到，同時讓主管可以透過 OKR 提早發現落後風險。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "現在要進入 Q3（7-9 月），距離年度目標還差 USD 648 萬，公司設定 Q3 要達成 USD 380 萬（約佔剩餘缺口的 58.6%），這個目標比 Q1/Q2 單季平均值（USD 276 萬）高出 38%。背景因素：Q3 有兩場重要展覽（7 月德國 K Show、8 月東南亞 Interplas）、有 3 個去年洽談中的大案預計在 Q3 收尾（合計約 USD 95 萬）、但同時歐洲市場因通膨影響買氣偏保守。我需要在下週的業務主管會議中，帶著全隊一起完成 Q3 的 OKR 規劃，而且要讓每位業務覺得目標是跳一下就能達到的（ambitious but achievable），不是老闆從天上掉下來的壓力。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請產出「Q3 業務 OKR 規劃套件」，包含：第一部分「O（目標）撰寫指引」，提供 3 個符合公司文化的 Q3 Objective 選項（激勵性、具方向感的一句話，非數字）及各自的適用情境說明；第二部分「KR（關鍵結果）拆解範例」，以其中一個 O 為基礎，示範如何拆解成 3-4 個可量化的 KR（含基準線數字、目標數字、評分方式）；第三部分「個人 OKR 模板」（每位業務填寫用，含個人季度目標、3 個 KR、每月里程碑、主管簽核欄）；第四部分「主管追蹤機制」（每週 Check-in 問三個問題的範本）。全套繁體中文，可直接列印成 A4 工作坊用的填寫表單。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "跨部門需求單（業務 → 工程／採購）",
+    "category": "業務工作流",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是一家特殊用途橡膠押出機製造商的業務工程師，任職 5 年，具備機械工程學士背景，能看懂客戶提供的產品圖面與材料規格書，但設計細節仍需仰賴工程部確認。日常工作中頻繁需要向工程部（詢問技術可行性）、採購部（詢問特殊零件備料時間）、生管部（確認交期排程）三個部門提出內部需求，但過去常常用 email 或口頭傳話，導致需求遺漏、工程師不理解背景而反覆詢問、採購認為需求太模糊無法採購，平均每個跨部門需求來回溝通需要 3-5 天，拖慢客戶報價的速度，曾因此失去一個 USD 22 萬的訂單。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "本週接到一個來自捷克汽車橡膠密封件廠的詢價，客戶要求一條用於生產 EPDM 窗框密封條的共押出生產線，規格特殊：需要 2 個押出頭同步運作（硬質 EPDM + 軟質海綿 EPDM）、生產速度 12-18 m/min、線速自動同步控制、下線後要有自動盤捲裝置、整線要符合 CE 認證且提供電氣圖面。客戶要求 10 個工作天內提供技術確認書 + 初步報價，且強調這是他們評估供應商的首要門檻。我需要同時向工程部（確認技術方案可行性與共押出頭設計是否有現成基礎）、採購部（確認德國品牌驅動器和義大利品牌模具鋼的取得時間與成本估算）、生管部（確認若確認訂單，最快的交貨周期）提出正式的內部需求，但每個部門需要的資訊角度不同，過去用一封 email 發給三個部門效果很差。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請產出三份分別針對工程部、採購部、生管部的「跨部門需求單」，每份都是獨立文件，格式符合製造業內部簽核標準。每份需求單必含：需求編號與日期、客戶背景說明（2-3 句，給非業務人員讀）、具體需求描述（條列，含技術參數）、需要對方回答的問題（最多 5 個，每個問題清楚到對方不需反問就能直接回覆）、需要回覆的期限（含說明為何有此期限）、若無法達成時希望對方提供的替代方案建議。三份需求單格式一致，語氣尊重各部門專業，不把問題丟過去就算，而是表現出業務這端已做足功課。繁體中文，可列印後附上客戶原始詢價文件一起提交。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "B2B 產品介紹文案——中文版（給代理商/通路夥伴）",
+    "category": "行銷支援",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是一家台灣塑橡膠機械製造商的資深業務經理，有 12 年 B2B 銷售經驗，主要負責東南亞與中東市場的代理商開發與維護。我熟悉 PE 中空成型機、PET 瓶胚機、雙色注塑機等產品的技術規格，能夠把工程師語言轉化成客戶聽得懂的商業價值語言。我經常使用 HubSpot 管理客戶關係，並透過 LinkedIn 和 WhatsApp 維繫海外客戶。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我們公司剛推出新款 PE 中空成型機（型號：CHB-550），最大容積 50L，產能每小時 180 個，能耗比舊款降低 28%，已取得 CE 認證。下個月我要參加越南胡志明市的越南國際塑膠橡膠工業展（VietnamPlas），預計接觸越南、泰國、馬來西亞的包裝廠與農業用容器廠等潛在代理商。\n\n目前的問題是：我們的技術型錄是工程師寫的，充滿規格數字，代理商看不出「為什麼要選我們而不是中國品牌」。業務主管希望我在展前兩週（現在距離展覽只剩 10 天）準備好一份能直接給代理商閱讀的中文產品介紹文案，長度控制在 A4 一頁以內，要突出與中國競品的差異化（台灣品質保證、售後服務、交期穩定）。以往每次準備這類文案要花 3 天來回修改，這次希望一天內產出可用版本。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請產出一份 600-800 字的中文產品介紹文案，結構包含：①一句話價值主張（開頭吸睛）、②三大核心優勢（條列，每點 2-3 行）、③適用產業與客戶類型、④台灣製造的差異化亮點、⑤行動呼籲（展覽現場預約洽談）。語氣專業但不生硬，像業務人員面對面介紹產品的口吻。文案中不要出現虛假數字，我填入的規格數據請直接套用。最終產出必須可以直接排版印刷，代理商拿到就能閱讀，不需要再大幅修改。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "B2B 產品介紹文案——英文版（直接寄給海外終端客戶）",
+    "category": "行銷支援",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是台灣一家橡膠密封件製造商的外銷業務副理，負責歐洲與北美市場，有 8 年英文商務溝通經驗。我的客戶群以德國汽車 Tier 1 供應商和美國工業設備廠為主。我熟悉 EPDM O-Ring、矽膠墊片、NBR 油封等產品線，以及 IATF 16949、RoHS、REACH 等認證要求。我慣用 Salesforce 追蹤報價進度，並定期透過 email 發送產品更新給客戶。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我們剛完成一條 EPDM O-Ring 的新規格（AS568-214 尺寸，Shore A 硬度 70，耐溫 -40°C 至 +150°C，符合 REACH 無 PFAS），是針對電動車電池模組冷卻系統開發的。德國一家 EV 電池管理系統製造商（代號：客戶 DE-02）上個月在展會上詢問過這個規格，目前還在評估三家供應商。\n\n客戶 DE-02 的採購工程師要求我們在本週五前提供一份英文產品簡介，說明技術規格、品質保證體系、交貨條件（FOB 基隆）和樣品申請流程。我們以往的英文文案是直翻中文版，語氣不夠自然，而且沒有針對 EV 產業需求做調整，常被客戶說「看起來跟其他台廠沒兩樣」。這次要讓客戶 DE-02 感覺我們懂他們的產業需求，而不只是賣零件的。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請產出一份 500-700 字的英文產品介紹文案（正式商業英文，非行銷廣告語氣），結構包含：①Product Highlight（3 點核心賣點，每點含技術數據）、②Quality Assurance（認證體系說明）、③EV Application Note（針對電動車場景的說明，展現產業理解）、④Ordering Information（MOQ、樣品申請、交期）、⑤Contact CTA。英文要符合歐洲 B2B 書信慣例，不要過度行銷腔，用技術導向的專業語氣。產出後我可以直接貼入 email 寄出。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "LinkedIn 個人品牌貼文——外銷業務專家定位",
+    "category": "行銷支援",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是台灣塑膠射出成型機製造商的外銷業務總監，在這個產業打滾 15 年，拜訪過印度、巴基斯坦、波蘭、巴西、土耳其超過 200 家工廠。我的 LinkedIn 有 1,800 個連結，主要是海外採購主管和工廠負責人。我希望建立「台灣製造業務專家」的個人品牌，不只是產品推銷員，而是讓潛在客戶主動找上我。我習慣用英文和中文混搭發文，但貼文互動率偏低，按讚數通常不超過 20。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "上週我剛從印度孟買出差回來，拜訪了 3 家汽車零件用塑膠件廠（代號：IN-A、IN-B、IN-C）。IN-A 是一家年營收約 USD 15M 的家族企業，廠長說他們最大的痛點是「換模時間太長，導致小批量訂單不划算」。我們的新型快速換模系統可以把換模時間從 45 分鐘縮短到 8 分鐘，完全命中他的痛點，最後談成了一台樣機訂單。\n\n這個拜訪故事我想寫成一篇 LinkedIn 貼文，讓更多印度、東南亞的製造業採購主管看到，進而主動聯繫我。但我不擅長說故事，以往的貼文都是直接介紹產品規格，互動很差。這次我想用「客戶的痛點故事」為主軸，帶出我們產品的解決方案，讓讀者有感覺，最終目標是讓同類型的廠商私訊問我。預計下週一（展後第三天）發布。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請產出一篇 LinkedIn 貼文，英文撰寫（因為目標讀者是海外採購主管），長度 200-280 字，結構遵循 Hook → 客戶故事（不用真實名字）→ 數字化成果 → 給讀者的一個實用洞察 → 軟性 CTA（歡迎私訊交流）。開頭第一句必須是問句或反常識的陳述，能讓人停下來看。語氣像有 15 年經驗的業務老手在分享實戰心得，不像廣告文案。結尾加 3-5 個相關 hashtag（英文）。產出的貼文要能直接複製貼上到 LinkedIn 發布。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "B2B Email 行銷——培養冷名單到開會意願",
+    "category": "行銷支援",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是台灣橡膠押出機製造商的行銷專員，負責管理公司的 EDM 電子報名單，共有約 2,400 筆海外聯絡人（主要來自過去五年的展會名片掃描）。我熟悉 Mailchimp 的操作，但對 Email 行銷的策略和文案寫作不太有把握。公司老闆希望我把這批「冷名單」暖起來，目標是讓其中 5% 的人在三個月內同意接受業務拜訪或線上會議。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "這批 2,400 筆名單中，有 600 筆是 2023 年德國杜塞道夫橡塑料展（K Show）蒐集的歐洲客戶，職稱以採購主管和生產工程師為主，產業包含汽車零件、電線電纜、醫療用矽膠製品。這些名單已經超過 18 個月沒有任何聯繫，屬於完全冷掉的狀態。\n\n我計畫用 3 封 Email 的序列（間隔 7 天各發一封）把他們暖起來：第 1 封：提供有價值的產業洞察（不賣產品）；第 2 封：分享一個客戶成功案例（不用真名）；第 3 封：邀請預約 30 分鐘線上會議。以前我們的 EDM 開信率只有 8%，業界平均約 22%，主要原因是主旨太硬（直接寫「產品報價通知」）、內文像型錄。這次要改變策略，從「對方有興趣的話題」切入，而不是從我們的產品切入。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請產出三封 Email 的完整文案（英文），每封包含：①主旨（A/B 兩個版本）、②開頭問候（個人化語氣）、③主體內容（依各封主題撰寫）、④結尾 CTA。每封正文長度控制在 180-250 字，不要太長。語氣要像一個懂產業的顧問朋友，而不是業務員在推銷。第一封主題鎖定「歐洲橡膠製品廠 2025 年面對的三個供應鏈挑戰」，讓收件人覺得我們理解他的處境。三封 Email 產出後，我可以直接複製進 Mailchimp 排程發送。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "展前內容包——一份技術規格表轉成多通路行銷素材",
+    "category": "行銷支援",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是台灣雙螺桿押出機製造商的行銷特助，一個人兼顧公司官網、Facebook、LinkedIn、展會型錄和 EDM 五個行銷管道。老闆是技術出身，提供的原始素材通常是一份 Word 格式的技術規格表和幾張工廠照片，我要把這些素材轉化成各平台適合的內容格式。我沒有設計背景，主要靠 Canva 做圖，文案全部自己寫。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我們三週後要參加泰國曼谷的 Interplas Thailand 展覽，公司要展出新款雙螺桿押出機（型號：TSE-75），主要特點是：螺桿直徑 75mm、L/D 比 52:1、最高轉速 600 rpm、產能 800-1,200 kg/hr（依物料而定）、配備智慧溫控系統（誤差 ±0.5°C）、適用物料涵蓋 PVC 電纜料、PA/GF 工程塑膠、TPE 彈性體。\n\n以前每次展前要準備這些內容，行銷部門至少要花一整週：官網更新 1.5 天、Facebook/LinkedIn 草稿 2 天、型錄文案 2 天、EDM 1 天。老闆說今年要壓縮到兩天內完成，讓我壓力很大。我需要從同一份技術規格表，快速產出風格各異但主軸一致的多通路內容，而不是每個管道都從零開始寫。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請根據我提供的產品規格，一次產出以下五份內容：①官網產品頁文案（中文，400-500 字，含 H1 標題、三大特色條列、適用物料、技術規格表格文字）；②Facebook 貼文（中文，150 字內，搭配 2-3 個 emoji，附展覽資訊）；③LinkedIn 貼文（英文，180 字，技術導向語氣）；④展會型錄摘要段落（中英對照，各 100 字）；⑤EDM 主旨+前三行預覽文字（英文，兩個版本）。五份內容語氣各異但核心訊息一致，產出後我可以直接分配到各平台使用，不需要再大幅改寫。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "B2B SEO 關鍵字研究——外銷官網吸引海外買家自然流量",
+    "category": "行銷支援",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是台灣塑膠機械製造商的數位行銷負責人，管理公司英文官網已有兩年。我具備基礎 SEO 概念，熟悉 Google Search Console 和 Ahrefs 的操作，能判讀關鍵字搜尋量和競爭程度（KD 值）。公司主要產品線是 PET 瓶胚射出機、瓶坯模具、全電動射出機，主力市場是印度、越南、墨西哥、波蘭。目前官網月流量約 800 UV，老闆希望一年內成長到 5,000 UV，其中自然搜尋占 60% 以上。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "我在 Google Search Console 發現，目前有流量進來的關鍵字幾乎都是品牌名稱，很少有「產品類型關鍵字」帶來的自然流量。競品分析發現，同業的義大利品牌 Sacmi 和中國品牌 SMF 在「PET preform injection molding machine」這個關鍵字排在前五名，而我們官網沒有針對這類關鍵字做任何優化。\n\n我需要建立一份 SEO 關鍵字清單，專注在「有採購意圖的買家」會搜尋的詞，而不是泛用的技術詞彙。目標市場的搜尋習慣各不相同：印度買家慣用「machine price」類查詢，越南買家常用越南文加英文混搭，墨西哥買家用西班牙文為主。我這次先聚焦英文關鍵字，之後再處理其他語言。時間壓力是下個月要提交年度行銷計畫，需要有關鍵字策略作為依據。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請產出一份結構化的 B2B SEO 關鍵字研究報告，包含：①核心關鍵字清單（10-15 個主要詞，含搜尋意圖分類：資訊型 / 商業型 / 交易型）；②長尾關鍵字清單（20-30 個，適合部落格文章或產品頁標題）；③三個優先執行的頁面優化建議（指定現有頁面 + 建議標題 + Meta Description 範本）；④內容主題建議（5 個部落格題目，對應不同漏斗階段）。每個關鍵字旁邊請標注「預估競爭程度（低/中/高）」和「對哪個目標市場最有效」。輸出格式用條列加簡短說明，方便我直接複製進行銷計畫 PPT。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "客戶見證整理——從訪談錄音到可發布的背書文案",
+    "category": "行銷支援",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是台灣橡膠密封件廠商的業務助理，負責整理客戶關係資料和行銷素材。我剛完成三個客戶的電話訪談錄音（各約 20 分鐘），受訪者分別是越南塑膠廠採購主管、印度汽車零件廠生產工程師、波蘭食品加工廠採購協理。我的工作是把這些訪談內容整理成可以放上官網、型錄和 LinkedIn 的客戶見證文案，但我不知道怎麼從凌亂的訪談逐字稿中提煉出有力的引言和背書段落。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "三位受訪者的訪談重點摘要（我自己整理的粗糙版本）：\n\n客戶 VN-01（越南塑膠廠採購主管）：說我們的矽膠 O-Ring 比之前用的中國貨「耐用很多」，換貨頻率從每季換一次變成每年只換一次，省下不少維護停機成本。但他說話比較保守，沒有給出很強烈的推薦語。\n\n客戶 IN-03（印度汽車零件廠生產工程師）：對我們的快速出貨（下單後 10 個工作天到貨）讚不絕口，說之前用歐洲供應商要等 6-8 週，影響到他們的生產排程。他很願意具名推薦。\n\n客戶 PL-07（波蘭食品加工廠採購協理）：強調我們的 FDA 認證矽膠產品讓他們通過歐盟食品接觸材料審查，這是他們選我們而不選其他亞洲廠商的主因。\n\n問題：這三段原始訪談資料語氣平淡、缺乏故事感，直接放上去沒有說服力。我需要把它們改寫成既真實又有力的客戶見證，同時符合不誇大事實的原則。老闆希望下週提案給客戶時就能用到。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請針對三位客戶各產出以下兩種格式的見證文案：①簡短引言版（英文，30-50 字，適合放在官網首頁或 LinkedIn 輪播），用第一人稱，含客戶職稱和國家（不用真名，用代號如「採購主管，越南」）；②完整案例段落版（英文，120-180 字），結構為「背景問題 → 選擇我們的原因 → 具體成果 → 推薦語」，語氣像真實受訪者說話，有情感有細節。產出的文案不能誇大訪談中沒有提到的事實，但可以把語氣從保守改寫得更有力量。六份文案產出後，我可以直接交給設計師排版，或貼入官網後台。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "競品定價策略分析——找出我們的最佳報價區間",
+    "category": "策略決策",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是台灣注塑機製造商的業務總監，管理 8 人業務團隊，負責亞洲和中東市場的業績目標。我有 18 年機械業銷售經驗，熟悉台灣、中國、韓國、日本主要品牌的產品定位與價格帶。公司每年出貨約 120 台，平均單價 USD 80,000-350,000，報價決策目前由我和老闆兩人拍板。我使用 Excel 管理歷史報價記錄，以及業務拜訪後的競品情報。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "最近我發現輸掉了三個中東訂單（代號：ME-11、ME-12、ME-13），事後跟客戶確認，都是輸給同一家中國競品（代號：CN-Brand A），對方的報價比我們低 18-25%。但奇怪的是，ME-11 客戶說他知道品質差一些，只是預算壓力大才選 CN-Brand A。ME-12 客戶是新客戶，根本不知道品質差異在哪，純粹看價格。ME-13 客戶在詢問我們之前就已經去中國展場拿過報價，已有錨定價格，我們的報價看起來比「市場行情」貴了 30%。\n\n三個輸單的原因不同，代表定價策略要分客戶類型來設計，而不是用同一個價格表打天下。我現在需要建立一套「分級定價策略框架」，針對不同客戶狀況（新客戶 vs 舊客戶 vs 已被競品錨定的客戶）有不同的報價邏輯和溝通話術。老闆要求下個月業務會議前提出方案。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請產出一份「B2B 機械業分級定價策略分析報告」，包含：①三種客戶類型的定價心理分析（新客戶 / 舊客戶 / 已被競品錨定的客戶）；②針對每種客戶類型的報價策略建議（含報價時機、折扣空間設定原則、價值溝通重點）；③「如何重新框架價格感知」的話術範例（3-5 句可直接用在業務會議的話）；④一個簡單的報價決策流程圖（用文字條列描述步驟即可，不需要真的畫圖）。報告長度 600-900 字，用條列加說明段落，方便我改成 PPT 在業務會議上報告。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "新市場進入策略——評估是否值得深耕一個新國家或新產業",
+    "category": "策略決策",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是台灣橡膠押出設備製造商的總經理特助，負責協助老闆做市場開發決策。我有商管背景，擅長市場研究和數據整理，但對橡膠機械產業的技術細節還在學習中。公司目前主力市場是東南亞（越南、泰國、馬來西亞），年營收約 USD 12M，老闆想在三年內把營收翻倍，評估是否要進入印度市場或者醫療用矽膠設備這個新產業垂直。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "老闆上個月從印度出差回來，在孟買和清奈各拜訪了 4 家潛在客戶。他的印象是：印度市場規模很大（橡膠輪胎和汽車密封件需求旺盛），但客戶非常在乎價格，且信用條件差（慣用 90-120 天應收）；當地有印度本土競品和中國競品已深耕多年；合規認證和當地法規複雜（GST 分類、進口關稅、BIS 認證）。\n\n另一個選項是醫療用矽膠押出設備——台灣和美國有幾家醫療器材廠商詢問過，但這條產品線需要 ISO 13485 認證，且客戶採購週期很長（12-18 個月），研發投入估計要 USD 500K 以上。\n\n老闆要我在兩週內做出一份「兩個選項的市場進入可行性評估」，讓他在董事會上報告，最終決定先做哪個（或兩個都不做）。評估必須務實，不能只是列優缺點，要有明確建議和風險提示。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請產出一份「新市場進入策略評估框架」（可直接套用在印度市場 vs 醫療矽膠兩個選項），包含：①評估模型（5 個維度：市場規模、競爭強度、進入成本、資金回收期、策略契合度，每個維度 1-10 分並說明評分邏輯）；②兩個選項的並排比較（用文字段落，不用表格）；③明確的「進入 / 觀望 / 放棄」建議，附上主要理由 3 點；④如果決定進入，前 90 天應優先做的 3 件事。報告語氣要像顧問給老闆的備忘錄，直接、有立場、敢給建議，不要模棱兩可。總長 700-1000 字。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "客戶流失預測——提前三個月識別快要跑掉的重要客戶",
+    "category": "策略決策",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是台灣塑膠配件製造商（主產品：塑膠水閥、管接頭、PP 桶）的業務經理，管理 45 個海外客戶帳戶，分布在印度、中東、東非和中南美。我的 KPI 是年客戶留存率 85% 以上，但去年只達到 79%，有 6 個客戶沒有續訂。我用 Excel 追蹤每個客戶的歷史訂單、詢問頻率和付款記錄，但缺乏一套有系統的「客戶健康度」評估方法，常常客戶跑掉了才後悔「當時應該要更主動聯繫」。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "去年流失的 6 個客戶，事後分析有幾個共同訊號是早就出現的，但我當時沒有察覺：①詢價頻率從每月 2-3 次降到每季 1 次以下；②上一筆訂單到現在超過 4 個月沒有新單；③最近一次回覆 email 的速度明顯變慢（從 24 小時延長到 3-5 天）；④曾經要求打折但我們沒有及時回應；⑤換了採購聯絡人但我沒有主動建立新關係。\n\n現在我想用這些歷史教訓建立一套「客戶流失預警評分系統」——每個月自己用 Excel 跑一次，把 45 個客戶分成「健康 / 觀察 / 高危」三類，針對高危客戶提前採取挽留行動。目標是把流失率從 21% 降回 15% 以下。老闆說如果這套方法有效，會考慮在全公司推廣。我需要在下週的業務月會上提出這個方案。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請設計一套「B2B 客戶流失預警評分系統」，包含：①預警指標清單（6-8 個可量化或可觀察的指標，每個指標說明「正常值」和「警示值」）；②評分計算方式（每個指標給分，合計判斷等級：健康 / 觀察 / 高危）；③針對「高危」客戶的挽留行動 SOP（按步驟條列，第 1 週做什麼、第 2-4 週做什麼）；④一份 Excel 欄位設計建議（欄位名稱 + 資料格式 + 更新頻率），方便我直接建表。整份產出 600-800 字，用條列搭配說明，讓我可以直接做成業務月會的報告投影片。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "業務團隊培訓計畫——新人 90 天從零到獨立開單",
+    "category": "策略決策",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是台灣橡膠機械製造商的業務主管，底下有 5 名業務，其中 2 名是今年新招募的社會新鮮人，沒有工業銷售背景。公司產品主要是橡膠煉膠機、開煉機和硫化機，平均訂單金額 USD 50,000-200,000，銷售週期 3-6 個月。我自己是工廠出身轉業務，沒有受過正式的業務培訓課程設計訓練，通常靠老人帶新人，但效果不穩定——去年招了 3 人，半年內離職了 2 人。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "今年新進的兩名業務（代號：新業務 A 和新業務 B），A 是商管系畢業，英文還可以但完全不懂橡膠機械；B 是機械系畢業，懂產品但英文很弱、不擅長跟人打交道。他們的試用期是 3 個月，試用期結束的標準我一直定得很模糊，只說「能獨立接待客戶」，但這樣太抽象，導致他們不知道自己哪裡還不夠、要怎麼進步。\n\n上一批新人之所以離職，事後分析有兩個原因：一是不知道自己學到哪了（看不見進步）；二是沒有客戶資源，前三個月等於白忙，挫折感很重。我這次想用系統化的 90 天培訓計畫，讓他們有明確的學習節奏和里程碑，同時讓我知道每個月他們的成長狀況。目標：90 天內，兩人都能獨立完成一筆 USD 20,000 以上的訂單，或者讓至少一個詢問案進入正式報價階段。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請設計一份「B2B 外銷業務新人 90 天培訓計畫」，分為三個 30 天階段，每階段包含：①學習主題（產品知識 / 銷售技巧 / 客戶管理，各佔比重建議）；②每週具體任務（條列，可直接交辦）；③月底里程碑（可量化的驗收標準，例如：完成 10 通陌生開發電話 / 提交 3 份客戶拜訪記錄）；④主管應做的週期性輔導動作（每週 15 分鐘 1:1 的討論重點）。另外針對「業務 A（英文強、技術弱）」和「業務 B（技術強、英文弱）」各提供 1-2 個個別化建議。計畫總長 800-1000 字，用條列結構，方便我改成 PDF 交給他們。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "產品線毛利分析——找出金牛產品和拖油瓶產品",
+    "category": "策略決策",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是台灣塑橡膠配件製造商的財務主管，負責每季的管理會計報告和老闆的決策支援。公司有 4 條主要產品線（A: PP 工業桶、B: PVC 管接頭、C: 矽膠密封件、D: 尼龍扣件），我熟悉 ERP 系統的成本模組，能調出每個 SKU 的原料成本和直接人工成本，但分攤製費和業務費用的邏輯目前是按營收比例分攤，老闆說這樣不夠精準，可能看不出哪條線真的在賺錢。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "上季的整體毛利率是 23%，比去年同期下降 4 個百分點，但老闆說感覺業務量沒有變少，只是不知道錢少在哪裡。我初步分析懷疑是 C 線（矽膠密封件）和 D 線（尼龍扣件）有問題——C 線近兩年客製化訂單比例提高（從 30% 到 55%），每個客製訂單的換模和試模成本很高，但報價時沒有把這些隱形成本算進去；D 線訂單量大但單價很低，業務為了衝業績接了很多小量訂單（MOQ 100 個），每張訂單的物流和行政成本比例過高。\n\nA 線（PP 工業桶）是最老的產品，老闆一直說「這條線沒什麼未來」，但我直覺它的標準化程度高、毛利可能比想像中好。B 線（PVC 管接頭）是主力，但最近中國競品一直殺價，我不確定還有沒有利潤空間。老闆要我在月底前提交一份「產品線毛利健診報告」，決定哪條線要加碼、哪條線要縮減或調整策略。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請設計一套「B2B 製造業產品線毛利分析框架」，讓我可以套用在我們四條產品線上，包含：①比按營收比例更精準的製費分攤方法建議（說明邏輯，不需要實際計算數字）；②四條產品線的毛利健診診斷問卷（每線 5 個問題，幫我自己找出隱藏成本）；③「金牛 / 問題 / 明星 / 瘦狗」四象限定義（套用在我們的情境，說明判斷標準）；④針對 C 線客製化訂單定價修正的建議思路（不需要精算，給邏輯方向）；⑤老闆報告用的結論框架（先說結論 → 數據支撐 → 建議行動，三段式結構範本）。總長 700-900 字，用條列加說明段落。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+<script type="text/template-data">
+{
+    "name": "老闆要的每季數據洞察報告——讓數字說話不只是列數字",
+    "category": "策略決策",
+    "structure": [
+        {
+            "type": "textarea",
+            "id": "role",
+            "label": "👤 角色設定",
+            "placeholder": "我是台灣塑膠機械製造商的業務助理（特助），每季要幫老闆整理業務數據並撰寫主管報告。我負責從 ERP 系統匯出原始銷售數據（Excel 格式），整合業務回報的客戶狀況，然後整理成一份給老闆看的季報。老闆說他不要看「流水帳數字」，他要看「這季發生了什麼、為什麼、下季要怎麼辦」，但我不確定怎麼把數字轉化成有洞察的文字，常常花了三天整理數據，老闆看了三分鐘就問「那下一步呢」。"
+        },
+        {
+            "type": "textarea",
+            "id": "context",
+            "label": "📋 情境描述",
+            "placeholder": "本季（2025 Q4）的數據摘要（我自己整理的）：總業績 USD 4.2M，比去年同季成長 8%，但比上季下滑 12%。按市場分：東南亞佔 45%（越南 +22%、泰國 -15%）、中東佔 30%（沙烏地 +35%、阿聯酋 -8%）、南亞佔 15%（印度 +5%、巴基斯坦 -20%）、其他 10%。按產品線分：注塑機佔 60%（主力）、押出機佔 25%、輔助設備佔 15%。本季新增客戶 7 家，流失客戶 4 家。業務說泰國和巴基斯坦下滑的原因是當地匯率貶值導致客戶延後採購，阿聯酋下滑是因為主要客戶換了採購主管還沒建立關係。\n\n問題：這些數字我都整理出來了，但我不知道怎麼寫成「老闆喜歡看的那種報告」。老闆開會前 30 分鐘就想看完、做決定，不要看到一堆圖表。"
+        },
+        {
+            "type": "textarea",
+            "id": "expectation",
+            "label": "🎯 期望產出",
+            "placeholder": "請根據我提供的數據，產出一份「Q4 業務洞察備忘錄」（格式像給老闆的 1 頁行政摘要），包含：①本季一句話結論（最重要的發現，直接說出數字和判斷）；②三個值得關注的訊號（正面 1 個、負面 2 個，每個 50-80 字，含數據和初步解釋）；③最需要老闆決策的一件事（說明背景、選項和建議，80-100 字）；④下季三個優先行動（條列，每點一行，直接可交辦）。整份備忘錄控制在 400-500 字，語氣像資深特助對老闆的口頭簡報轉文字，直接、有立場、不廢話。產出後可以直接貼入 email 或 LINE 傳給老闆。"
+        }
+    ]
+}
+---PROMPT---
+請根據以下「角色、情境、期望」三要素，產出專業且可直接使用的內容。
+
+【角色】
+<<<{role}>>>
+
+【情境】
+<<<{context}>>>
+
+【期望】
+<<<{expectation}>>>
+
+請確保產出內容：
+1. 專業度：符合 B2B 業務的專業標準與外銷實務
+2. 實用性：可以直接套用在工作中
+3. 格式化：結構清楚、條理分明、易於閱讀
+4. 客戶機密保護：不使用真實客戶姓名，以代號或化名替代
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const templates = {};
+        const categories = new Set();
+
+        document.querySelectorAll('script[type="text/template-data"]').forEach(function(el, index) {
+            const id = 'template_' + index;
+            try {
+                const content = el.textContent.trim().split('---PROMPT---');
+                const header = JSON.parse(content[0]);
+                const prompt = content[1].trim();
+                templates[id] = {
+                    name: header.name,
+                    structure: header.structure,
+                    template: prompt,
+                    category: header.category || '未分類'
+                };
+                categories.add(header.category || '未分類');
+            } catch (e) {
+                console.error("Error parsing template:", e);
+            }
+        });
+
+        const filterContainer = document.getElementById('category-filters');
+        if (categories.size > 0) {
+            const categoryCounts = {};
+            Object.values(templates).forEach(t => {
+                categoryCounts[t.category] = (categoryCounts[t.category] || 0) + 1;
+            });
+
+            let allBtn = document.createElement('button');
+            allBtn.className = 'btn btn-secondary btn-sm filter-btn active';
+            allBtn.dataset.category = 'all';
+            allBtn.innerHTML = '全部顯示 <span class="template-count">(' + Object.keys(templates).length + ')</span>';
+            filterContainer.appendChild(allBtn);
+
+            const order = ['客戶研究','提案製作','客戶溝通','會議紀錄','業務工作流','行銷支援','策略決策'];
+            const icons = {'客戶研究':'🔍','提案製作':'📋','客戶溝通':'💬','會議紀錄':'📝','業務工作流':'⚡','行銷支援':'📣','策略決策':'🎯'};
+            order.forEach(cat => {
+                if (categories.has(cat)) {
+                    let btn = document.createElement('button');
+                    btn.className = 'btn btn-outline-secondary btn-sm filter-btn';
+                    btn.dataset.category = cat;
+                    btn.innerHTML = (icons[cat]||'') + ' ' + cat + ' <span class="template-count">(' + (categoryCounts[cat]||0) + ')</span>';
+                    filterContainer.appendChild(btn);
+                }
+            });
+        }
+
+        const populateDropdown = (filterCategory) => {
+            const selector = document.getElementById('templateSelector');
+            selector.innerHTML = '';
+            Object.keys(templates).forEach(id => {
+                const t = templates[id];
+                if (filterCategory === 'all' || t.category === filterCategory) {
+                    const opt = document.createElement('option');
+                    opt.value = id;
+                    opt.textContent = t.name;
+                    selector.appendChild(opt);
+                }
+            });
+            if (selector.options.length > 0) {
+                selector.dispatchEvent(new Event('change'));
+            }
+        };
+
+        const buildForm = (key) => {
+            if (!key || !templates[key]) return;
+            const c = document.getElementById('prompt-form-container');
+            c.innerHTML = '';
+            templates[key].structure.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'mb-3';
+                const label = document.createElement('label');
+                label.className = 'form-label';
+                label.setAttribute('for', item.id);
+                label.innerHTML = '<strong>' + item.label + '</strong>';
+                div.appendChild(label);
+
+                let el;
+                if (item.type === 'textarea') {
+                    el = document.createElement('textarea');
+                    el.className = 'form-control form-control-lg prompt-input';
+                } else {
+                    el = document.createElement('input');
+                    el.type = 'text';
+                    el.className = 'form-control prompt-input';
+                }
+                el.id = item.id;
+                el.value = item.placeholder;
+                el.addEventListener('input', updatePrompt);
+                div.appendChild(el);
+                c.appendChild(div);
+            });
+            updatePrompt();
+        };
+
+        const updatePrompt = () => {
+            const key = document.getElementById('templateSelector').value;
+            if (!key || !templates[key]) return;
+            let tpl = templates[key].template;
+            templates[key].structure.forEach(item => {
+                const el = document.getElementById(item.id);
+                const val = el ? el.value : '';
+                tpl = tpl.replace(new RegExp('<<<\\{' + item.id + '\\}>>>', 'g'), val);
+            });
+            document.getElementById('output').textContent = tpl;
+        };
+
+        filterContainer.addEventListener('click', function(e) {
+            const btn = e.target.closest('.filter-btn');
+            if (!btn) return;
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('active', 'btn-secondary');
+                b.classList.add('btn-outline-secondary');
+            });
+            btn.classList.add('active', 'btn-secondary');
+            btn.classList.remove('btn-outline-secondary');
+            populateDropdown(btn.dataset.category);
+        });
+
+        document.getElementById('templateSelector').addEventListener('change', function() {
+            buildForm(this.value);
+        });
+
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            const text = document.getElementById('output').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = this;
+                btn.innerHTML = '<i class="bi bi-check-lg me-1"></i>已複製!';
+                setTimeout(() => btn.innerHTML = '<i class="bi bi-clipboard me-1"></i>複製', 2000);
+            });
+        });
+
+        populateDropdown('all');
+    });
+    </script>
+</body>
+</html>
